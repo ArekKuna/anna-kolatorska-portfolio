@@ -1,13 +1,12 @@
 import { sdk } from "@/graphql/client";
-import {
-  GetStaticPaths,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from "next";
+import { SessionAttributesFragment } from "@/graphql/generated";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 
-type SessionPageProps = InferGetStaticPropsType<typeof getStaticProps>;
+type SessionPageProps = {
+  session: SessionAttributesFragment;
+};
 
-export const SessionPage = ({ session, hasError }: SessionPageProps) => {
+export const SessionPage = ({ session }: SessionPageProps) => {
   return (
     <div>
       <div>
@@ -21,12 +20,14 @@ export const SessionPage = ({ session, hasError }: SessionPageProps) => {
   );
 };
 
-export const getStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps<SessionPageProps> = async (
+  context: GetStaticPropsContext
+) => {
   const { params } = context;
 
   if (!params?.session || Array.isArray(params.session)) {
     return {
-      props: { hasError: true, session: null },
+      notFound: true,
     };
   }
 
@@ -37,13 +38,11 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   const session = sessionCollections?.data[0].attributes;
 
   if (!session) {
-    return {
-      props: { hasError: true, session: null },
-    };
+    return { notFound: true };
   }
 
   return {
-    props: { session, hasError: false },
+    props: { session },
   };
 };
 
@@ -57,9 +56,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 
-  const paths = sessionCollections?.data.map((session) => {
+  const slugs = sessionCollections.data
+    .map((session) => session.attributes?.slug)
+    .filter((slug): slug is string => !!slug);
+
+  const paths = slugs.map((session) => {
     return {
-      params: { session: session.attributes?.slug?.toString() },
+      params: { session },
     };
   });
 
