@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_components_text_with_multiple_images_boxes",
+  "info": {
+    "displayName": "textWithMultipleImagesBox"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "position": {
+      "type": "boolean"
+    }
+  }
+}

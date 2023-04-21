@@ -1,0 +1,50 @@
+query GetSession($slug: String!) {
+  sessionCollections(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        ...SessionAttributes
+      }
+    }
+  }
+}
+
+fragment SessionAttributes on SessionCollection {
+  firstParagraph {
+    ...SessionParagraph
+  }
+  secondParagraph {
+    ...SessionParagraph
+  }
+  lastParagraph {
+    ...LastSessionParagraph
+  }
+  slug
+}
+
+fragment SessionParagraph on ComponentComponentsSessionPage {
+  id
+  title
+  description
+  position
+  image {
+    data {
+      attributes {
+        url
+      }
+    }
+  }
+}
+
+fragment LastSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
+  id
+  title
+  description
+  position
+  images {
+    data {
+      attributes {
+        url
+      }
+    }
+  }
+}
