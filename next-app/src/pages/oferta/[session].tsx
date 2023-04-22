@@ -10,7 +10,7 @@ export const SessionPage = ({ session }: SessionPageProps) => {
   return (
     <div>
       <div>
-        <h1>{session?.firstParagraph?.title}</h1>
+        <h1>{session?.upperSection?.title}</h1>
       </div>
 
       <div></div>

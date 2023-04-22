@@ -12,17 +12,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "firstParagraph": {
+    "upperSection": {
       "type": "component",
       "repeatable": false,
       "component": "components.session-page"
     },
-    "secondParagraph": {
+    "midSection": {
       "type": "component",
       "repeatable": false,
       "component": "components.session-page"
     },
-    "lastParagraph": {
+    "lowerSection": {
       "type": "component",
       "repeatable": false,
       "component": "components.text-with-multiple-images-box"

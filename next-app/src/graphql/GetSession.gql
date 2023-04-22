@@ -9,14 +9,14 @@ query GetSession($slug: String!) {
 }
 
 fragment SessionAttributes on SessionCollection {
-  firstParagraph {
+  upperSection {
     ...SessionParagraph
   }
-  secondParagraph {
+  midSection {
     ...SessionParagraph
   }
-  lastParagraph {
-    ...LastSessionParagraph
+  lowerSection {
+    ...MultipleImagesSessionParagraph
   }
   slug
 }
@@ -35,7 +35,7 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
   }
 }
 
-fragment LastSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
+fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
   id
   title
   description
