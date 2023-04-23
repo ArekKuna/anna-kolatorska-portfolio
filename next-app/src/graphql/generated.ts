@@ -1035,6 +1035,8 @@ export type SessionParagraphFragment = { __typename?: 'ComponentComponentsSessio
 
 export type MultipleImagesSessionParagraphFragment = { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, description?: string | null, position?: boolean | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } | null };
 
+export type MultipleImagesSessionParagraphAttributesFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null };
+
 export const SessionParagraphFragmentDoc = gql`
     fragment SessionParagraph on ComponentComponentsSessionPage {
   id
@@ -1050,6 +1052,13 @@ export const SessionParagraphFragmentDoc = gql`
   }
 }
     `;
+export const MultipleImagesSessionParagraphAttributesFragmentDoc = gql`
+    fragment MultipleImagesSessionParagraphAttributes on UploadFileEntity {
+  attributes {
+    url
+  }
+}
+    `;
 export const MultipleImagesSessionParagraphFragmentDoc = gql`
     fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
   id
@@ -1058,13 +1067,11 @@ export const MultipleImagesSessionParagraphFragmentDoc = gql`
   position
   images {
     data {
-      attributes {
-        url
-      }
+      ...MultipleImagesSessionParagraphAttributes
     }
   }
 }
-    `;
+    ${MultipleImagesSessionParagraphAttributesFragmentDoc}`;
 export const SessionAttributesFragmentDoc = gql`
     fragment SessionAttributes on SessionCollection {
   upperSection {

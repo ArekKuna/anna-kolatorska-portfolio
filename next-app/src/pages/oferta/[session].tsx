@@ -4,14 +4,20 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 
 type SessionPageProps = {
   session: SessionAttributesFragment;
+  upperSectionImage: string;
+  midSectionImage: string;
+  lowerSectionImages: string[];
 };
 
-export const SessionPage = ({ session }: SessionPageProps) => {
+export const SessionPage = ({
+  session,
+  upperSectionImage,
+  midSectionImage,
+  lowerSectionImages,
+}: SessionPageProps) => {
   return (
     <div>
-      <div>
-        <h1>{session?.upperSection?.title}</h1>
-      </div>
+      <div></div>
 
       <div></div>
 
@@ -41,8 +47,28 @@ export const getStaticProps: GetStaticProps<SessionPageProps> = async (
     return { notFound: true };
   }
 
+  const upperSectionImageUrl =
+    session.upperSection?.image?.data?.attributes?.url;
+
+  const midSectionImageUrl = session.midSection?.image?.data?.attributes?.url;
+
+  const lowerSectionImages = session.lowerSection?.images?.data;
+
+  if (!upperSectionImageUrl || !midSectionImageUrl || !lowerSectionImages) {
+    return { notFound: true };
+  }
+
+  const imagesUrls = lowerSectionImages
+    ?.map((session) => session.attributes?.url)
+    .filter((slug): slug is string => !!slug);
+
   return {
-    props: { session },
+    props: {
+      session,
+      upperSectionImage: upperSectionImageUrl,
+      midSectionImage: midSectionImageUrl,
+      lowerSectionImages: imagesUrls,
+    },
   };
 };
 

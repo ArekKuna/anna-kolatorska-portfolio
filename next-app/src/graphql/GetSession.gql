@@ -42,9 +42,13 @@ fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleIm
   position
   images {
     data {
-      attributes {
-        url
-      }
+      ...MultipleImagesSessionParagraphAttributes
     }
+  }
+}
+
+fragment MultipleImagesSessionParagraphAttributes on UploadFileEntity {
+  attributes {
+    url
   }
 }
