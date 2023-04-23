@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_templates_session_templates",
+  "info": {
+    "displayName": "sessionTemplate",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "textWithImageBox": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.session-page"
+    },
+    "textWithImageBox2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.session-page"
+    },
+    "textWithMultipleImages": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.text-with-multiple-images-box"
+    }
+  }
+}

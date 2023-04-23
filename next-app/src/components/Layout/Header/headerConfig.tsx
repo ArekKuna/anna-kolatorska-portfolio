@@ -24,24 +24,24 @@ export const MobileMenuMap: MobileNavigationMenu[] = [
     text: "oferta",
     categories: [
       {
-        text: "sesje biznesowe",
-        href: "/oferta/sesje-biznesowe",
+        text: "sesja biznesowa",
+        href: "/oferta/sesja-biznesowa",
       },
       {
-        text: "sesje portretowe",
-        href: "/oferta/sesje-portretowe",
+        text: "sesja portretowa",
+        href: "/oferta/sesja-portretowa",
       },
       {
-        text: "sesje rodzinne",
-        href: "/oferta/sesje-rodzinne",
+        text: "sesja rodzinna",
+        href: "/oferta/sesja-rodzinna",
       },
       {
-        text: "sesje reportażowe",
-        href: "/oferta/sesje-reportazowe",
+        text: "sesja reportażowa",
+        href: "/oferta/sesja-reportazowa",
       },
       {
-        text: "sesje kobiece",
-        href: "/oferta/sesje-kobiece",
+        text: "sesja kobieca",
+        href: "/oferta/sesja-kobieca",
       },
     ],
     icon: <ChevronDownIcon />,

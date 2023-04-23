@@ -1,0 +1,54 @@
+query GetSession($slug: String!) {
+  sessionCollections(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        ...SessionAttributes
+      }
+    }
+  }
+}
+
+fragment SessionAttributes on SessionCollection {
+  upperSection {
+    ...SessionParagraph
+  }
+  midSection {
+    ...SessionParagraph
+  }
+  lowerSection {
+    ...MultipleImagesSessionParagraph
+  }
+  slug
+}
+
+fragment SessionParagraph on ComponentComponentsSessionPage {
+  id
+  title
+  description
+  position
+  image {
+    data {
+      attributes {
+        url
+      }
+    }
+  }
+}
+
+fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
+  id
+  title
+  description
+  position
+  images {
+    data {
+      ...MultipleImagesSessionParagraphAttributes
+    }
+  }
+}
+
+fragment MultipleImagesSessionParagraphAttributes on UploadFileEntity {
+  attributes {
+    url
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_session_pages",
+  "info": {
+    "displayName": "textWithImageBox",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "position": {
+      "type": "boolean"
+    }
+  }
+}
