@@ -1,28 +1,40 @@
+import { Section } from "@/components/Layout/Section/Section";
+import { SingleImageBox } from "@/components/Session/SingleImageBox";
 import { sdk } from "@/graphql/client";
 import { SessionAttributesFragment } from "@/graphql/generated";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 
 type SessionPageProps = {
   session: SessionAttributesFragment;
-  upperSectionImage: string;
-  midSectionImage: string;
-  lowerSectionImages: string[];
+  upperSectionImageUrl: string;
+  midSectionImageUrl: string;
+  lowerSectionImagesUrls: string[];
 };
 
 export const SessionPage = ({
   session,
-  upperSectionImage,
-  midSectionImage,
-  lowerSectionImages,
+  upperSectionImageUrl,
+  midSectionImageUrl,
+  lowerSectionImagesUrls,
 }: SessionPageProps) => {
+  if (!session.upperSection || !session.midSection) {
+    return <p>Ładowanie...</p>;
+  }
   return (
-    <div>
-      <div></div>
-
-      <div></div>
-
-      <div></div>
-    </div>
+    <>
+      <Section>
+        <SingleImageBox
+          sessionContent={session.upperSection}
+          imageUrl={upperSectionImageUrl}
+        />
+      </Section>
+      <Section>
+        <SingleImageBox
+          sessionContent={session.midSection}
+          imageUrl={midSectionImageUrl}
+        />
+      </Section>
+    </>
   );
 };
 
@@ -65,9 +77,9 @@ export const getStaticProps: GetStaticProps<SessionPageProps> = async (
   return {
     props: {
       session,
-      upperSectionImage: upperSectionImageUrl,
-      midSectionImage: midSectionImageUrl,
-      lowerSectionImages: imagesUrls,
+      upperSectionImageUrl: upperSectionImageUrl,
+      midSectionImageUrl: midSectionImageUrl,
+      lowerSectionImagesUrls: imagesUrls,
     },
   };
 };

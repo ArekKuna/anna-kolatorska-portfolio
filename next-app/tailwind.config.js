@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lato: ["Lato, sans-serif"],
+        lato: ["var(--font-lato)"],
+        signRiyathi: ["SignRiyathi", "sans-serif"],
       },
       boxShadow: {
         top: "0 -0.1px 1px 0",
