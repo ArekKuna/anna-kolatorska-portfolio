@@ -28,6 +28,7 @@ export const SessionPage = ({
           imageUrl={upperSectionImageUrl}
         />
       </Section>
+
       <Section>
         <SingleImageBox
           sessionContent={session.midSection}

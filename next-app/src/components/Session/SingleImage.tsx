@@ -4,13 +4,13 @@ type SingleImageProps = {
 };
 
 export const SingleImage = ({ imageUrl }: SingleImageProps) => {
-  console.log(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}`);
   return (
     <Image
       src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}`}
       alt="aaa"
-      width={200}
-      height={300}
+      width={300}
+      height={500}
+      className="mx-auto rounded-3xl"
     />
   );
 };

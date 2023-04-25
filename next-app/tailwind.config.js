@@ -7,6 +7,10 @@ module.exports = {
         lato: ["var(--font-lato)"],
         signRiyathi: ["SignRiyathi", "sans-serif"],
       },
+      colors: {
+        gray: "#fafafa",
+        font: "#645b65",
+      },
       boxShadow: {
         top: "0 -0.1px 1px 0",
         bottom: "0 0.1px 1px 0",

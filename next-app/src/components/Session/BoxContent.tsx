@@ -5,9 +5,11 @@ type BoxContentProps = {
 
 export const BoxContent = ({ title, description }: BoxContentProps) => {
   return (
-    <>
-      <h1>{title}</h1>
+    <div className="space-y-6">
+      <h1 className="font-signRiyathi text-4xl capitalize text-center">
+        {title}
+      </h1>
       <p>{description}</p>
-    </>
+    </div>
   );
 };

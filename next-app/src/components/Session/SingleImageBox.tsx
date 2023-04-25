@@ -16,7 +16,7 @@ export const SingleImageBox = ({
   }
 
   return (
-    <div>
+    <div className="px-4 py-10 my-6 bg-gray rounded-3xl space-y-10">
       <BoxContent
         title={sessionContent.title}
         description={sessionContent.description}
