@@ -30,6 +30,7 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
     data {
       attributes {
         url
+        alternativeText
       }
     }
   }
@@ -50,5 +51,6 @@ fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleIm
 fragment MultipleImagesSessionParagraphAttributes on UploadFileEntity {
   attributes {
     url
+    alternativeText
   }
 }

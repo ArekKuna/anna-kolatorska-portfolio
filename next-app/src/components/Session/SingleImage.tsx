@@ -1,16 +1,26 @@
 import Image from "next/image";
+import { IGetPlaiceholderReturn } from "plaiceholder";
+import { useState } from "react";
+
 type SingleImageProps = {
-  imageUrl: string;
+  image: IGetPlaiceholderReturn;
+  imageAlt: string;
 };
 
-export const SingleImage = ({ imageUrl }: SingleImageProps) => {
+export const SingleImage = ({ image, imageAlt }: SingleImageProps) => {
+  const [blurred, setBlurred] = useState(true);
   return (
     <Image
-      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}`}
-      alt="aaa"
+      src={image.img.src}
+      alt={imageAlt}
       width={300}
       height={500}
-      className="mx-auto rounded-3xl"
+      blurDataURL={image.base64}
+      style={{ width: "auto", height: "auto" }}
+      onLoad={() => setBlurred(false)}
+      className={`mx-auto rounded-3xl ${
+        blurred ? "blur-lg" : null
+      } transition-all duration-700`}
     />
   );
 };

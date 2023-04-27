@@ -2,46 +2,54 @@ import { Section } from "@/components/Layout/Section/Section";
 import { SingleImageBox } from "@/components/Session/SingleImageBox";
 import { sdk } from "@/graphql/client";
 import { SessionAttributesFragment } from "@/graphql/generated";
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { GetStaticPaths, GetStaticPropsContext } from "next";
+import { getPlaiceholder, IGetPlaiceholderReturn } from "plaiceholder";
 
 type SessionPageProps = {
   session: SessionAttributesFragment;
-  upperSectionImageUrl: string;
-  midSectionImageUrl: string;
-  lowerSectionImagesUrls: string[];
+  upperSectionImage: {
+    upperSectionImage: IGetPlaiceholderReturn;
+    upperSectionImageAlt: string;
+  };
+  midSectionImage: {
+    midSectionImage: IGetPlaiceholderReturn;
+    midSectionImageAlt: string;
+  };
+  lowerSectionImages: IGetPlaiceholderReturn[];
 };
 
 export const SessionPage = ({
   session,
-  upperSectionImageUrl,
-  midSectionImageUrl,
-  lowerSectionImagesUrls,
+  upperSectionImage,
+  midSectionImage,
+  lowerSectionImages,
 }: SessionPageProps) => {
   if (!session.upperSection || !session.midSection) {
     return <p>Ładowanie...</p>;
   }
+
   return (
     <>
       <Section>
         <SingleImageBox
           sessionContent={session.upperSection}
-          imageUrl={upperSectionImageUrl}
+          image={upperSectionImage.upperSectionImage}
+          imageAlt={upperSectionImage.upperSectionImageAlt}
         />
       </Section>
 
       <Section>
         <SingleImageBox
           sessionContent={session.midSection}
-          imageUrl={midSectionImageUrl}
+          image={midSectionImage.midSectionImage}
+          imageAlt={midSectionImage.midSectionImageAlt}
         />
       </Section>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps<SessionPageProps> = async (
-  context: GetStaticPropsContext
-) => {
+export const getStaticProps: any = async (context: GetStaticPropsContext) => {
   const { params } = context;
 
   if (!params?.session || Array.isArray(params.session)) {
@@ -60,27 +68,44 @@ export const getStaticProps: GetStaticProps<SessionPageProps> = async (
     return { notFound: true };
   }
 
-  const upperSectionImageUrl =
-    session.upperSection?.image?.data?.attributes?.url;
+  const lowerSectionImagesPath = session.lowerSection?.images?.data;
 
-  const midSectionImageUrl = session.midSection?.image?.data?.attributes?.url;
-
-  const lowerSectionImages = session.lowerSection?.images?.data;
-
-  if (!upperSectionImageUrl || !midSectionImageUrl || !lowerSectionImages) {
+  if (!lowerSectionImagesPath) {
     return { notFound: true };
   }
 
-  const imagesUrls = lowerSectionImages
-    ?.map((session) => session.attributes?.url)
-    .filter((slug): slug is string => !!slug);
+  const upperSectionImage = await getPlaiceholder(
+    `http://localhost:1337${session.upperSection?.image?.data?.attributes?.url}`
+  );
+
+  const midSectionImage = await getPlaiceholder(
+    `http://localhost:1337${session.midSection?.image?.data?.attributes?.url}`
+  );
+
+  const lowerSectionImagesData = lowerSectionImagesPath
+    .map((imagePath) => imagePath.attributes?.url)
+    .filter((url): url is string => !!url);
+
+  const lowerSectionImages = await Promise.all(
+    lowerSectionImagesData.map((url) =>
+      getPlaiceholder(`http://localhost:1337${url}`)
+    )
+  );
 
   return {
     props: {
       session,
-      upperSectionImageUrl: upperSectionImageUrl,
-      midSectionImageUrl: midSectionImageUrl,
-      lowerSectionImagesUrls: imagesUrls,
+      upperSectionImage: {
+        upperSectionImage,
+        upperSectionImageAlt:
+          session.upperSection?.image?.data?.attributes?.alternativeText,
+      },
+      midSectionImage: {
+        midSectionImage,
+        midSectionImageAlt:
+          session.midSection?.image?.data?.attributes?.alternativeText,
+      },
+      lowerSectionImages,
     },
   };
 };
