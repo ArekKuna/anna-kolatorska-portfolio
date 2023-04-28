@@ -1,18 +1,16 @@
 import { BoxContent } from "@/components/Session/BoxContent";
 import { SessionParagraphFragment } from "@/graphql/generated";
-import { IGetPlaiceholderReturn } from "plaiceholder";
+import { SessionImageAttributes } from "@/pages/oferta/[session]";
 import { SingleImage } from "./SingleImage";
 
 type SingleImageBoxProps = {
   sessionContent: SessionParagraphFragment;
-  image: IGetPlaiceholderReturn;
-  imageAlt: string;
+  image: SessionImageAttributes;
 };
 
 export const SingleImageBox = ({
   sessionContent,
   image,
-  imageAlt,
 }: SingleImageBoxProps) => {
   if (!sessionContent.title || !sessionContent.description) {
     return <p>Ładowanie</p>;
@@ -24,7 +22,7 @@ export const SingleImageBox = ({
         title={sessionContent.title}
         description={sessionContent.description}
       />
-      <SingleImage image={image} imageAlt={imageAlt} />
+      <SingleImage image={image} />
     </div>
   );
 };

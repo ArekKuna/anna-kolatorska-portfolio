@@ -1035,8 +1035,16 @@ export type SessionParagraphFragment = { __typename?: 'ComponentComponentsSessio
 
 export type MultipleImagesSessionParagraphFragment = { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, description?: string | null, position?: boolean | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null };
 
-export type MultipleImagesSessionParagraphAttributesFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null };
+export type ImageSessionParagraphAttributesFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null };
 
+export const ImageSessionParagraphAttributesFragmentDoc = gql`
+    fragment ImageSessionParagraphAttributes on UploadFileEntity {
+  attributes {
+    url
+    alternativeText
+  }
+}
+    `;
 export const SessionParagraphFragmentDoc = gql`
     fragment SessionParagraph on ComponentComponentsSessionPage {
   id
@@ -1045,22 +1053,11 @@ export const SessionParagraphFragmentDoc = gql`
   position
   image {
     data {
-      attributes {
-        url
-        alternativeText
-      }
+      ...ImageSessionParagraphAttributes
     }
   }
 }
-    `;
-export const MultipleImagesSessionParagraphAttributesFragmentDoc = gql`
-    fragment MultipleImagesSessionParagraphAttributes on UploadFileEntity {
-  attributes {
-    url
-    alternativeText
-  }
-}
-    `;
+    ${ImageSessionParagraphAttributesFragmentDoc}`;
 export const MultipleImagesSessionParagraphFragmentDoc = gql`
     fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
   id
@@ -1069,11 +1066,11 @@ export const MultipleImagesSessionParagraphFragmentDoc = gql`
   position
   images {
     data {
-      ...MultipleImagesSessionParagraphAttributes
+      ...ImageSessionParagraphAttributes
     }
   }
 }
-    ${MultipleImagesSessionParagraphAttributesFragmentDoc}`;
+    ${ImageSessionParagraphAttributesFragmentDoc}`;
 export const SessionAttributesFragmentDoc = gql`
     fragment SessionAttributes on SessionCollection {
   upperSection {

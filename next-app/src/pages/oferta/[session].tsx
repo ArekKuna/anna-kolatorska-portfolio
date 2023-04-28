@@ -1,30 +1,32 @@
 import { Section } from "@/components/Layout/Section/Section";
 import { SingleImageBox } from "@/components/Session/SingleImageBox";
 import { sdk } from "@/graphql/client";
-import { SessionAttributesFragment } from "@/graphql/generated";
+import {
+  ImageSessionParagraphAttributesFragment,
+  SessionAttributesFragment,
+} from "@/graphql/generated";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
-import { getPlaiceholder, IGetPlaiceholderReturn } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
+
+export type SessionImageAttributes = {
+  url: string;
+  alt: string;
+  base64: string;
+};
 
 type SessionPageProps = {
   session: SessionAttributesFragment;
-  upperSectionImage: {
-    upperSectionImage: IGetPlaiceholderReturn;
-    upperSectionImageAlt: string;
-  };
-  midSectionImage: {
-    midSectionImage: IGetPlaiceholderReturn;
-    midSectionImageAlt: string;
-  };
-  lowerSectionImages: IGetPlaiceholderReturn[];
+  upperSectionImage: SessionImageAttributes;
+  midSectionImage: SessionImageAttributes;
+  lowerSectionImages: SessionImageAttributes[];
 };
 
 export const SessionPage = ({
   session,
   upperSectionImage,
   midSectionImage,
-  lowerSectionImages,
 }: SessionPageProps) => {
-  if (!session.upperSection || !session.midSection) {
+  if (!session.upperSection || !session.midSection || !session.lowerSection) {
     return <p>Ładowanie...</p>;
   }
 
@@ -33,20 +35,34 @@ export const SessionPage = ({
       <Section>
         <SingleImageBox
           sessionContent={session.upperSection}
-          image={upperSectionImage.upperSectionImage}
-          imageAlt={upperSectionImage.upperSectionImageAlt}
+          image={upperSectionImage}
         />
       </Section>
 
       <Section>
         <SingleImageBox
           sessionContent={session.midSection}
-          image={midSectionImage.midSectionImage}
-          imageAlt={midSectionImage.midSectionImageAlt}
+          image={midSectionImage}
         />
       </Section>
     </>
   );
+};
+
+const getStaticImage = async (
+  image: ImageSessionParagraphAttributesFragment
+) => {
+  const url = image.attributes?.url;
+  const alt = image.attributes?.alternativeText;
+  const { base64 } = await getPlaiceholder(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`
+  );
+
+  return {
+    url,
+    alt,
+    base64,
+  };
 };
 
 export const getStaticProps: any = async (context: GetStaticPropsContext) => {
@@ -68,44 +84,42 @@ export const getStaticProps: any = async (context: GetStaticPropsContext) => {
     return { notFound: true };
   }
 
-  const lowerSectionImagesPath = session.lowerSection?.images?.data;
+  const upperSectionImageData = session.upperSection?.image?.data;
+  const midSectionImageData = session.midSection?.image?.data;
+  const lowerSectionImagesData = session.lowerSection?.images?.data;
 
-  if (!lowerSectionImagesPath) {
+  if (
+    !upperSectionImageData ||
+    !midSectionImageData ||
+    !lowerSectionImagesData
+  ) {
     return { notFound: true };
   }
 
-  const upperSectionImage = await getPlaiceholder(
-    `http://localhost:1337${session.upperSection?.image?.data?.attributes?.url}`
+  const upperSectionImageAttributes = await getStaticImage(
+    upperSectionImageData
   );
 
-  const midSectionImage = await getPlaiceholder(
-    `http://localhost:1337${session.midSection?.image?.data?.attributes?.url}`
-  );
+  const midSectionImageAttributes = await getStaticImage(midSectionImageData);
 
-  const lowerSectionImagesData = lowerSectionImagesPath
-    .map((imagePath) => imagePath.attributes?.url)
-    .filter((url): url is string => !!url);
-
-  const lowerSectionImages = await Promise.all(
-    lowerSectionImagesData.map((url) =>
-      getPlaiceholder(`http://localhost:1337${url}`)
-    )
+  const lowerSectionImagesAttributes = await Promise.all(
+    lowerSectionImagesData.map(getStaticImage)
   );
 
   return {
     props: {
       session,
       upperSectionImage: {
-        upperSectionImage,
-        upperSectionImageAlt:
-          session.upperSection?.image?.data?.attributes?.alternativeText,
+        url: upperSectionImageAttributes.url,
+        alt: upperSectionImageAttributes.alt,
+        base64: upperSectionImageAttributes.base64,
       },
       midSectionImage: {
-        midSectionImage,
-        midSectionImageAlt:
-          session.midSection?.image?.data?.attributes?.alternativeText,
+        url: midSectionImageAttributes.url,
+        alt: midSectionImageAttributes.alt,
+        base64: midSectionImageAttributes.base64,
       },
-      lowerSectionImages,
+      lowerSectionImages: lowerSectionImagesAttributes,
     },
   };
 };

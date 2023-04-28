@@ -1,18 +1,18 @@
+import { SessionImageAttributes } from "@/pages/oferta/[session]";
 import Image from "next/image";
-import { IGetPlaiceholderReturn } from "plaiceholder";
 import { useState } from "react";
 
 type SingleImageProps = {
-  image: IGetPlaiceholderReturn;
-  imageAlt: string;
+  image: SessionImageAttributes;
 };
 
-export const SingleImage = ({ image, imageAlt }: SingleImageProps) => {
+export const SingleImage = ({ image }: SingleImageProps) => {
   const [blurred, setBlurred] = useState(true);
+
   return (
     <Image
-      src={image.img.src}
-      alt={imageAlt}
+      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
+      alt={image.alt}
       width={300}
       height={500}
       blurDataURL={image.base64}

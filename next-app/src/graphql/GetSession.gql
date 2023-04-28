@@ -28,10 +28,7 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
   position
   image {
     data {
-      attributes {
-        url
-        alternativeText
-      }
+      ...ImageSessionParagraphAttributes
     }
   }
 }
@@ -43,12 +40,12 @@ fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleIm
   position
   images {
     data {
-      ...MultipleImagesSessionParagraphAttributes
+      ...ImageSessionParagraphAttributes
     }
   }
 }
 
-fragment MultipleImagesSessionParagraphAttributes on UploadFileEntity {
+fragment ImageSessionParagraphAttributes on UploadFileEntity {
   attributes {
     url
     alternativeText
