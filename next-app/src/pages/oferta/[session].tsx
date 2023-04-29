@@ -1,5 +1,5 @@
 import { Section } from "@/components/Layout/Section/Section";
-import { SingleImageBox } from "@/components/Session/SingleImageBox";
+import { SessionBox } from "@/components/Session/SessionBox";
 import { sdk } from "@/graphql/client";
 import {
   ImageSessionParagraphAttributesFragment,
@@ -25,6 +25,7 @@ export const SessionPage = ({
   session,
   upperSectionImage,
   midSectionImage,
+  lowerSectionImages,
 }: SessionPageProps) => {
   if (!session.upperSection || !session.midSection || !session.lowerSection) {
     return <p>Ładowanie...</p>;
@@ -33,16 +34,23 @@ export const SessionPage = ({
   return (
     <>
       <Section>
-        <SingleImageBox
+        <SessionBox
           sessionContent={session.upperSection}
-          image={upperSectionImage}
+          images={upperSectionImage}
         />
       </Section>
 
       <Section>
-        <SingleImageBox
+        <SessionBox
           sessionContent={session.midSection}
-          image={midSectionImage}
+          images={midSectionImage}
+        />
+      </Section>
+
+      <Section>
+        <SessionBox
+          sessionContent={session.lowerSection}
+          images={lowerSectionImages}
         />
       </Section>
     </>
