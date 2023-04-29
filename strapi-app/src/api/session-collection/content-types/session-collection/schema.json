@@ -29,6 +29,13 @@
     },
     "slug": {
       "type": "uid"
+    },
+    "options": {
+      "type": "dynamiczone",
+      "components": [
+        "components.options"
+      ],
+      "required": false
     }
   }
 }

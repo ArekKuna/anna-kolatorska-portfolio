@@ -2,8 +2,9 @@ import { Section } from "@/components/Layout/Section/Section";
 import { SessionBox } from "@/components/Session/SessionBox";
 import { sdk } from "@/graphql/client";
 import {
-  ImageSessionParagraphAttributesFragment,
   SessionAttributesFragment,
+  SessionParagraphImageAttributesFragment,
+  SessionParagraphOptionsAttributesFragment,
 } from "@/graphql/generated";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 import { getPlaiceholder } from "plaiceholder";
@@ -19,6 +20,7 @@ type SessionPageProps = {
   upperSectionImage: SessionImageAttributes;
   midSectionImage: SessionImageAttributes;
   lowerSectionImages: SessionImageAttributes[];
+  options: SessionParagraphOptionsAttributesFragment[];
 };
 
 export const SessionPage = ({
@@ -26,11 +28,17 @@ export const SessionPage = ({
   upperSectionImage,
   midSectionImage,
   lowerSectionImages,
+  options,
 }: SessionPageProps) => {
-  if (!session.upperSection || !session.midSection || !session.lowerSection) {
+  if (
+    !session.upperSection ||
+    !session.midSection ||
+    !session.lowerSection ||
+    !options
+  ) {
     return <p>Ładowanie...</p>;
   }
-
+  console.log(options);
   return (
     <>
       <Section>
@@ -58,7 +66,7 @@ export const SessionPage = ({
 };
 
 const getStaticImage = async (
-  image: ImageSessionParagraphAttributesFragment
+  image: SessionParagraphImageAttributesFragment
 ) => {
   const url = image.attributes?.url;
   const alt = image.attributes?.alternativeText;
@@ -95,11 +103,13 @@ export const getStaticProps: any = async (context: GetStaticPropsContext) => {
   const upperSectionImageData = session.upperSection?.image?.data;
   const midSectionImageData = session.midSection?.image?.data;
   const lowerSectionImagesData = session.lowerSection?.images?.data;
+  const options = session.options;
 
   if (
     !upperSectionImageData ||
     !midSectionImageData ||
-    !lowerSectionImagesData
+    !lowerSectionImagesData ||
+    !options
   ) {
     return { notFound: true };
   }
@@ -128,6 +138,7 @@ export const getStaticProps: any = async (context: GetStaticPropsContext) => {
         base64: midSectionImageAttributes.base64,
       },
       lowerSectionImages: lowerSectionImagesAttributes,
+      options,
     },
   };
 };

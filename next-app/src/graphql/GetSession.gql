@@ -16,7 +16,10 @@ fragment SessionAttributes on SessionCollection {
     ...SessionParagraph
   }
   lowerSection {
-    ...MultipleImagesSessionParagraph
+    ...SessionParagraphMultipleImagesAttributes
+  }
+  options {
+    ...SessionParagraphOptionsAttributes
   }
   slug
 }
@@ -28,26 +31,32 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
   position
   image {
     data {
-      ...ImageSessionParagraphAttributes
+      ...SessionParagraphImageAttributes
     }
   }
 }
 
-fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
+fragment SessionParagraphMultipleImagesAttributes on ComponentComponentsTextWithMultipleImagesBox {
   id
   title
   position
   description
   images {
     data {
-      ...ImageSessionParagraphAttributes
+      ...SessionParagraphImageAttributes
     }
   }
 }
 
-fragment ImageSessionParagraphAttributes on UploadFileEntity {
+fragment SessionParagraphImageAttributes on UploadFileEntity {
   attributes {
     url
     alternativeText
   }
+}
+
+fragment SessionParagraphOptionsAttributes on ComponentComponentsOptions {
+  id
+  title
+  list
 }

@@ -1,7 +1,7 @@
 import { BoxContent } from "@/components/Session/BoxContent";
 import {
-  MultipleImagesSessionParagraphFragment,
   SessionParagraphFragment,
+  SessionParagraphMultipleImagesAttributesFragment,
 } from "@/graphql/generated";
 import { SessionImageAttributes } from "@/pages/oferta/[session]";
 import { MultipleImages } from "./MultipleImages";
@@ -10,7 +10,7 @@ import { SingleImage } from "./SingleImage";
 type SessionBoxProps = {
   sessionContent:
     | SessionParagraphFragment
-    | MultipleImagesSessionParagraphFragment;
+    | SessionParagraphMultipleImagesAttributesFragment;
   images: SessionImageAttributes | SessionImageAttributes[];
 };
 
