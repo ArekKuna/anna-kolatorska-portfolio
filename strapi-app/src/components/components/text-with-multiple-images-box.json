@@ -1,25 +1,31 @@
 {
   "collectionName": "components_components_text_with_multiple_images_boxes",
   "info": {
-    "displayName": "textWithMultipleImagesBox"
+    "displayName": "textWithMultipleImagesBox",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "text"
-    },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "position": {
       "type": "boolean"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

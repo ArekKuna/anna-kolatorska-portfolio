@@ -36,8 +36,8 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
 fragment MultipleImagesSessionParagraph on ComponentComponentsTextWithMultipleImagesBox {
   id
   title
-  description
   position
+  description
   images {
     data {
       ...ImageSessionParagraphAttributes
