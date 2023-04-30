@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  ul {
+    list-style: disc;
+  }
+}
+
 :root {
   margin: 0;
   padding: 0;

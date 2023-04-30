@@ -1,4 +1,5 @@
 import { Section } from "@/components/Layout/Section/Section";
+import { Options } from "@/components/Session/Options";
 import { SessionBox } from "@/components/Session/SessionBox";
 import { sdk } from "@/graphql/client";
 import {
@@ -38,7 +39,7 @@ export const SessionPage = ({
   ) {
     return <p>Ładowanie...</p>;
   }
-  console.log(options);
+
   return (
     <>
       <Section>
@@ -60,6 +61,10 @@ export const SessionPage = ({
           sessionContent={session.lowerSection}
           images={lowerSectionImages}
         />
+      </Section>
+
+      <Section>
+        <Options options={options} />
       </Section>
     </>
   );
