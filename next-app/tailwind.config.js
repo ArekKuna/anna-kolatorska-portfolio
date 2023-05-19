@@ -8,7 +8,7 @@ module.exports = {
         signRiyathi: ["SignRiyathi", "sans-serif"],
       },
       colors: {
-        gray: "#fafafa",
+        gray: "#f5f5f5",
         font: "#645b65",
       },
       boxShadow: {

@@ -5,5 +5,9 @@ type SectionProps = {
 };
 
 export const Section = ({ children }: SectionProps) => {
-  return <section className="col-span-4">{children}</section>;
+  return (
+    <section className="grid grid-cols-4 col-span-4 sm:grid-cols-6 sm:col-span-6  first:mt-10">
+      {children}
+    </section>
+  );
 };
