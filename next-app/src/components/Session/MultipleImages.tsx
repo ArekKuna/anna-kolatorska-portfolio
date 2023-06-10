@@ -9,7 +9,7 @@ type MultipleImagesProps = {
 export const MultipleImages = ({ images }: MultipleImagesProps) => {
   const [blurred, setBlurred] = useState(true);
   return (
-    <div className="grid grid-cols-3 grid-rows-2 col-span-4 gap-2 sm:px-12 sm:grid-cols-6 sm:col-span-6 sm:gap-4 md:px-0">
+    <>
       {images.map((image) => (
         <Image
           key={image.url}
@@ -18,13 +18,12 @@ export const MultipleImages = ({ images }: MultipleImagesProps) => {
           width={300}
           height={600}
           blurDataURL={image.base64}
-          // style={{ width: "auto", height: "auto" }}
           onLoad={() => setBlurred(false)}
-          className={`h-full w-full rounded-3xl col-span-1 sm:col-span-2 ${
-            blurred ? "blur-lg" : null
+          className={`col-span-1 rounded-3xl ${
+            blurred ? "blur-lg" : ""
           } transition-all duration-700`}
         />
       ))}
-    </div>
+    </>
   );
 };

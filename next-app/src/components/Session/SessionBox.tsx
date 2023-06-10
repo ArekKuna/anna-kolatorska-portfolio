@@ -7,28 +7,51 @@ import { SessionImageAttributes } from "@/pages/oferta/[session]";
 import { MultipleImages } from "./MultipleImages";
 import { SingleImage } from "./SingleImage";
 
+type BoxType = "UPPER" | "MIDDLE" | "LOWER";
+
 type SessionBoxProps = {
   sessionContent:
     | SessionParagraphFragment
     | SessionParagraphMultipleImagesAttributesFragment;
   images: SessionImageAttributes | SessionImageAttributes[];
+  boxType?: BoxType;
 };
 
 export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
   if (!sessionContent.title || !sessionContent.description) {
     return <p>Ładowanie</p>;
   }
+
+  const { description, position, title } = sessionContent;
+
+  const { defaultStyles } = getStyles(position ?? false);
+
   return (
-    <div className="px-6 py-14 my-10 grid grid-cols-4 col-span-4 bg-gray rounded-3xl space-y-10 sm:px-12 sm:grid-cols-6 sm:col-span-6 md:col-start-2 md:col-span-4">
-      <BoxContent
-        title={sessionContent.title}
-        description={sessionContent.description}
-      />
+    <div className={`${defaultStyles}`}>
+      <BoxContent title={title} description={description} />
       {Array.isArray(images) ? (
-        <MultipleImages images={images} />
+        <div className="grid grid-cols-3 grid-rows-1 gap-2 sm:px-8 md:h-fit md:px-0 md:col-start-1 md:row-start-1">
+          <MultipleImages images={images} />
+        </div>
       ) : (
-        <SingleImage image={images} />
+        <div
+          className={`${
+            position
+              ? "md:col-start-1 md:row-start-1"
+              : "md:col-start-2 md:row-start-1"
+          }`}
+        >
+          <SingleImage image={images} />
+        </div>
       )}
     </div>
   );
+};
+
+const getStyles = (position: boolean) => {
+  const defaultStyles = `px-4 py-14 my-10 bg-gray rounded-3xl grid gap-10 sm:px-8 md:col-span-8 md:grid-cols-2 md:gap-8 md:items-center`;
+
+  return {
+    defaultStyles,
+  };
 };

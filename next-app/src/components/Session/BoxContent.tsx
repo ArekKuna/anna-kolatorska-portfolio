@@ -9,12 +9,12 @@ const createMarkup = (description: string) => {
 
 export const BoxContent = ({ title, description }: BoxContentProps) => {
   return (
-    <div className="space-y-10 grid grid-cols-4 col-span-4 sm:col-span-6 sm:grid-cols-6 md:col-span-6">
-      <h1 className="font-signRiyathi text-4xl capitalize text-center col-span-4 sm:col-span-6">
+    <div className="flex flex-col gap-10">
+      <h1 className="font-signRiyathi text-4xl capitalize text-center">
         {title}
       </h1>
       <div
-        className="text-center col-span-4 sm:col-span-6"
+        className="text-start sm:text-center"
         dangerouslySetInnerHTML={createMarkup(description)}
       ></div>
     </div>

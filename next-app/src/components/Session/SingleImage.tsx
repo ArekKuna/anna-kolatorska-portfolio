@@ -16,10 +16,9 @@ export const SingleImage = ({ image }: SingleImageProps) => {
       width={300}
       height={500}
       blurDataURL={image.base64}
-      style={{ width: "auto", height: "auto" }}
       onLoad={() => setBlurred(false)}
-      className={`mx-auto rounded-3xl col-span-4 sm:col-start-2 md:col-start-1 md:col-span-6 ${
-        blurred ? "blur-lg" : null
+      className={`mx-auto rounded-3xl ${
+        blurred ? "blur-lg" : ""
       } transition-all duration-700`}
     />
   );

@@ -52,6 +52,7 @@ export type ComponentComponentsOptions = {
 
 export type ComponentComponentsSessionPage = {
   __typename?: 'ComponentComponentsSessionPage';
+  backgroundColor?: Maybe<Scalars['Boolean']>;
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   image?: Maybe<UploadFileEntityResponse>;
@@ -61,6 +62,7 @@ export type ComponentComponentsSessionPage = {
 
 export type ComponentComponentsSessionPageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentComponentsSessionPageFiltersInput>>>;
+  backgroundColor?: InputMaybe<BooleanFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentComponentsSessionPageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentComponentsSessionPageFiltersInput>>>;
@@ -69,6 +71,7 @@ export type ComponentComponentsSessionPageFiltersInput = {
 };
 
 export type ComponentComponentsSessionPageInput = {
+  backgroundColor?: InputMaybe<Scalars['Boolean']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   image?: InputMaybe<Scalars['ID']>;
@@ -78,6 +81,7 @@ export type ComponentComponentsSessionPageInput = {
 
 export type ComponentComponentsTextWithMultipleImagesBox = {
   __typename?: 'ComponentComponentsTextWithMultipleImagesBox';
+  backgroundColor?: Maybe<Scalars['Boolean']>;
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   images?: Maybe<UploadFileRelationResponseCollection>;
@@ -94,6 +98,7 @@ export type ComponentComponentsTextWithMultipleImagesBoxImagesArgs = {
 
 export type ComponentComponentsTextWithMultipleImagesBoxFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentComponentsTextWithMultipleImagesBoxFiltersInput>>>;
+  backgroundColor?: InputMaybe<BooleanFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentComponentsTextWithMultipleImagesBoxFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentComponentsTextWithMultipleImagesBoxFiltersInput>>>;
@@ -102,6 +107,7 @@ export type ComponentComponentsTextWithMultipleImagesBoxFiltersInput = {
 };
 
 export type ComponentComponentsTextWithMultipleImagesBoxInput = {
+  backgroundColor?: InputMaybe<Scalars['Boolean']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   images?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1045,13 +1051,13 @@ export type GetSessionQueryVariables = Exact<{
 }>;
 
 
-export type GetSessionQuery = { __typename?: 'Query', sessionCollections?: { __typename?: 'SessionCollectionEntityResponseCollection', data: Array<{ __typename?: 'SessionCollectionEntity', attributes?: { __typename?: 'SessionCollection', slug?: string | null, upperSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, midSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, lowerSection?: { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, position?: boolean | null, description?: string | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null } | null, options?: Array<{ __typename?: 'ComponentComponentsOptions', id: string, title?: string | null, list?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+export type GetSessionQuery = { __typename?: 'Query', sessionCollections?: { __typename?: 'SessionCollectionEntityResponseCollection', data: Array<{ __typename?: 'SessionCollectionEntity', attributes?: { __typename?: 'SessionCollection', slug?: string | null, upperSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, backgroundColor?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, midSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, backgroundColor?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, lowerSection?: { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, position?: boolean | null, description?: string | null, backgroundColor?: boolean | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null } | null, options?: Array<{ __typename?: 'ComponentComponentsOptions', id: string, title?: string | null, list?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
 
-export type SessionAttributesFragment = { __typename?: 'SessionCollection', slug?: string | null, upperSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, midSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, lowerSection?: { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, position?: boolean | null, description?: string | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null } | null, options?: Array<{ __typename?: 'ComponentComponentsOptions', id: string, title?: string | null, list?: string | null } | { __typename?: 'Error' } | null> | null };
+export type SessionAttributesFragment = { __typename?: 'SessionCollection', slug?: string | null, upperSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, backgroundColor?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, midSection?: { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, backgroundColor?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null } | null, lowerSection?: { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, position?: boolean | null, description?: string | null, backgroundColor?: boolean | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null } | null, options?: Array<{ __typename?: 'ComponentComponentsOptions', id: string, title?: string | null, list?: string | null } | { __typename?: 'Error' } | null> | null };
 
-export type SessionParagraphFragment = { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null };
+export type SessionParagraphFragment = { __typename?: 'ComponentComponentsSessionPage', id: string, title?: string | null, description?: string | null, position?: boolean | null, backgroundColor?: boolean | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null } | null } | null };
 
-export type SessionParagraphMultipleImagesAttributesFragment = { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, position?: boolean | null, description?: string | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null };
+export type SessionParagraphMultipleImagesAttributesFragment = { __typename?: 'ComponentComponentsTextWithMultipleImagesBox', id: string, title?: string | null, position?: boolean | null, description?: string | null, backgroundColor?: boolean | null, images?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null }> } | null };
 
 export type SessionParagraphImageAttributesFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null } | null };
 
@@ -1071,6 +1077,7 @@ export const SessionParagraphFragmentDoc = gql`
   title
   description
   position
+  backgroundColor
   image {
     data {
       ...SessionParagraphImageAttributes
@@ -1084,6 +1091,7 @@ export const SessionParagraphMultipleImagesAttributesFragmentDoc = gql`
   title
   position
   description
+  backgroundColor
   images {
     data {
       ...SessionParagraphImageAttributes

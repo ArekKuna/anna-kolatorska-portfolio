@@ -1,4 +1,4 @@
-import { Section } from "@/components/Layout/Section/Section";
+import { SessionSection } from "@/components/Layout/Sections/SessionSection";
 import { Options } from "@/components/Session/Options";
 import { SessionBox } from "@/components/Session/SessionBox";
 import { sdk } from "@/graphql/client";
@@ -7,7 +7,7 @@ import {
   SessionParagraphImageAttributesFragment,
   SessionParagraphOptionsAttributesFragment,
 } from "@/graphql/generated";
-import { GetStaticPaths, GetStaticPropsContext } from "next";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { getPlaiceholder } from "plaiceholder";
 
 export type SessionImageAttributes = {
@@ -40,32 +40,37 @@ export const SessionPage = ({
     return <p>Ładowanie...</p>;
   }
 
+  const { upperSection, midSection, lowerSection } = session;
+
   return (
     <>
-      <Section>
+      <SessionSection>
         <SessionBox
-          sessionContent={session.upperSection}
+          boxType="UPPER"
+          sessionContent={upperSection}
           images={upperSectionImage}
         />
-      </Section>
+      </SessionSection>
 
-      <Section>
+      <SessionSection>
         <SessionBox
-          sessionContent={session.midSection}
+          boxType="MIDDLE"
+          sessionContent={midSection}
           images={midSectionImage}
         />
-      </Section>
+      </SessionSection>
 
-      <Section>
+      <SessionSection>
         <SessionBox
-          sessionContent={session.lowerSection}
+          boxType="LOWER"
+          sessionContent={lowerSection}
           images={lowerSectionImages}
         />
-      </Section>
+      </SessionSection>
 
-      <Section>
+      <SessionSection>
         <Options options={options} />
-      </Section>
+      </SessionSection>
     </>
   );
 };
@@ -86,7 +91,9 @@ const getStaticImage = async (
   };
 };
 
-export const getStaticProps: any = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const { params } = context;
 
   if (!params?.session || Array.isArray(params.session)) {
