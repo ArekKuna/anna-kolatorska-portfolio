@@ -14,7 +14,7 @@ export const BoxContent = ({ title, description }: BoxContentProps) => {
         {title}
       </h1>
       <div
-        className="text-start sm:text-center"
+        className="text-start sm:text-center md:text-start"
         dangerouslySetInnerHTML={createMarkup(description)}
       ></div>
     </div>
