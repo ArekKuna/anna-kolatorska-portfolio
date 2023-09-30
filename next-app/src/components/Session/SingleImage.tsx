@@ -17,7 +17,7 @@ export const SingleImage = ({ image }: SingleImageProps) => {
       height={500}
       blurDataURL={image.base64}
       onLoad={() => setBlurred(false)}
-      className={`rounded-3xl ${
+      className={`rounded-3xl border-[1px] border-black shadow-lg ${
         blurred ? "blur-lg" : ""
       } transition-all duration-700`}
     />

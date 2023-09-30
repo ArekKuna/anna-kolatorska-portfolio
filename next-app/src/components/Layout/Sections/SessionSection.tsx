@@ -6,7 +6,7 @@ type SectionProps = {
 
 export const SessionSection = ({ children }: SectionProps) => {
   return (
-    <section className="px-4 grid grid-cols-1 sm:px-10 sm:grid-cols-4 md:px-14 md:grid-cols-8 lg:px-0 lg:grid-cols-10">
+    <section className="max-w-7xl pt-20 col-span-1 sm:col-span-4 md:pt-[130px] md:col-span-8 lg:col-span-12">
       {children}
     </section>
   );

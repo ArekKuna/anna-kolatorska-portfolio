@@ -1,12 +1,12 @@
-import Link from "next/link";
 import { Contacts } from "@/components/Layout/Footer/Contacts";
 import { Logo } from "@/components/Logo/Logo";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="p-2 pt-0 grid grid-cols-4 shadow-top shadow-black">
-      <Link href="/" className="col-span-2 col-start-2">
-        <Logo className="w-full h-[50px]" />
+    <footer className="pb-5 flex flex-col gap-4">
+      <Link href="/" className="flex justify-center">
+        <Logo className="w-1/2 md:w-1/4" />
       </Link>
       <Contacts />
     </footer>

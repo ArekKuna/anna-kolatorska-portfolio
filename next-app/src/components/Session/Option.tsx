@@ -17,7 +17,7 @@ export const Option = ({ option }: Optionprops) => {
   });
 
   return (
-    <div className="pt-8 pb-8 pl-8 pr-3 space-y-6 rounded-3xl bg-gray sm:col-span-3 md:col-span-3 last:md:col-start-2 last:md:col-span-4">
+    <div className="py-8 pl-8 pr-3 flex flex-col gap-6 rounded-3xl bg-gray last-of-type:mb-14">
       <h3 className="text-3xl text-center capitalize font-signRiyathi">
         {option.title}
       </h3>
