@@ -15,7 +15,7 @@ export const MobileNav = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center gap-4">
+      <div className="flex flex-col justify-center gap-4 md:flex-row md:gap-8">
         <Socials />
         <MobileNavTrigger onClick={handleOpenMobileMenuDrawer} />
       </div>
