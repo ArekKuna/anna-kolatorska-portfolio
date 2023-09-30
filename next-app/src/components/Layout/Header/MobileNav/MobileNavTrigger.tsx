@@ -7,10 +7,10 @@ type MobileNavTriggerProps = {
 export const MobileNavTrigger = ({ onClick }: MobileNavTriggerProps) => {
   return (
     <div
-      className="flex justify-center items-center font-light"
+      className="flex justify-center items-center gap-1 font-light"
       onClick={onClick}
     >
-      <span className="px-1 uppercase">menu</span>
+      <span className="uppercase">menu</span>
       <HamburgerIcon />
     </div>
   );
