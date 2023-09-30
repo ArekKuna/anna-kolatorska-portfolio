@@ -9,17 +9,20 @@
     "textWithImageBox": {
       "type": "component",
       "repeatable": false,
-      "component": "components.session-page"
+      "component": "components.session-page",
+      "required": true
     },
     "textWithImageBox2": {
       "type": "component",
       "repeatable": false,
-      "component": "components.session-page"
+      "component": "components.session-page",
+      "required": true
     },
     "textWithMultipleImages": {
       "type": "component",
       "repeatable": false,
-      "component": "components.text-with-multiple-images-box"
+      "component": "components.text-with-multiple-images-box",
+      "required": true
     }
   }
 }
