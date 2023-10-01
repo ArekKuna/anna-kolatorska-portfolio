@@ -18,7 +18,7 @@
         "images"
       ]
     },
-    "position": {
+    "imagePositionLeft": {
       "type": "boolean",
       "required": true
     },

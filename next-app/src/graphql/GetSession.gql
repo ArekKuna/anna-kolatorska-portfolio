@@ -28,7 +28,7 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
   id
   title
   description
-  position
+  imagePositionLeft
   image {
     data {
       ...SessionParagraphImageAttributes
@@ -39,7 +39,8 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
 fragment SessionParagraphMultipleImagesAttributes on ComponentComponentsTextWithMultipleImagesBox {
   id
   title
-  position
+  imagePositionLeft
+
   description
   images {
     data {

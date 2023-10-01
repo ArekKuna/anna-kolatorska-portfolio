@@ -22,7 +22,8 @@ export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
     return <p>Ładowanie</p>;
   }
 
-  const { description, position, title } = sessionContent;
+  const { description, imagePositionLeft, title } =
+    sessionContent as SessionParagraphFragment;
 
   return (
     <div className="bg-gray shadow-md rounded-3xl">
@@ -33,7 +34,7 @@ export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
             <MultipleImages images={images} />
           </div>
         ) : (
-          <div className="">
+          <div className="h-full w-full flex justify-center">
             <SingleImage image={images} />
           </div>
         )}
