@@ -45,27 +45,11 @@ export const SessionPage = ({
   return (
     <>
       <SessionSection>
-        <SessionBox
-          boxType="UPPER"
-          sessionContent={upperSection}
-          images={upperSectionImage}
-        />
-      </SessionSection>
+        <SessionBox sessionContent={upperSection} images={upperSectionImage} />
 
-      <SessionSection>
-        <SessionBox
-          boxType="MIDDLE"
-          sessionContent={midSection}
-          images={midSectionImage}
-        />
-      </SessionSection>
+        <SessionBox sessionContent={midSection} images={midSectionImage} />
 
-      <SessionSection>
-        <SessionBox
-          boxType="LOWER"
-          sessionContent={lowerSection}
-          images={lowerSectionImages}
-        />
+        <SessionBox sessionContent={lowerSection} images={lowerSectionImages} />
       </SessionSection>
 
       <SessionSection>

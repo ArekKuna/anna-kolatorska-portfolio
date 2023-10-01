@@ -29,6 +29,8 @@ fragment SessionParagraph on ComponentComponentsSessionPage {
   title
   description
   imagePositionLeft
+  backgroundColor
+  marginTop
   image {
     data {
       ...SessionParagraphImageAttributes
@@ -40,7 +42,8 @@ fragment SessionParagraphMultipleImagesAttributes on ComponentComponentsTextWith
   id
   title
   imagePositionLeft
-
+  backgroundColor
+  marginTop
   description
   images {
     data {

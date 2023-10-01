@@ -29,6 +29,14 @@
       },
       "customField": "plugin::ckeditor5.CKEditor",
       "required": true
+    },
+    "backgroundColor": {
+      "type": "boolean",
+      "required": true
+    },
+    "marginTop": {
+      "type": "boolean",
+      "required": true
     }
   }
 }

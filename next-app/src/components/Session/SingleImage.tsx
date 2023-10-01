@@ -4,22 +4,23 @@ import { useState } from "react";
 
 type SingleImageProps = {
   image: SessionImageAttributes;
+  marginTop: boolean;
 };
 
-export const SingleImage = ({ image }: SingleImageProps) => {
+export const SingleImage = ({ image, marginTop }: SingleImageProps) => {
   const [blurred, setBlurred] = useState(true);
 
   return (
     <Image
       src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
       alt={image.alt}
-      width={300}
+      width={400}
       height={500}
       blurDataURL={image.base64}
       onLoad={() => setBlurred(false)}
-      className={`rounded-3xl border-[1px] border-black shadow-lg ${
-        blurred ? "blur-lg" : ""
-      } transition-all duration-700`}
+      className={`rounded-3xl shadow-lg ${
+        marginTop ? "lg:-mt-[100px] xl:-mt-[150px]" : ""
+      } ${blurred ? "blur-lg" : ""} transition-all duration-700`}
     />
   );
 };

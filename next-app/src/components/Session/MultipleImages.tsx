@@ -15,11 +15,11 @@ export const MultipleImages = ({ images }: MultipleImagesProps) => {
           key={image.url}
           src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
           alt={image.alt}
-          width={500}
-          height={800}
+          width={400}
+          height={500}
           blurDataURL={image.base64}
           onLoad={() => setBlurred(false)}
-          className={`col-span-1 rounded-3xl ${
+          className={`col-span-1 rounded-3xl w-[32%] ${
             blurred ? "blur-lg" : ""
           } transition-all duration-700`}
         />

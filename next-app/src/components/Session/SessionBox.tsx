@@ -7,14 +7,11 @@ import { SessionImageAttributes } from "@/pages/oferta/[session]";
 import { MultipleImages } from "./MultipleImages";
 import { SingleImage } from "./SingleImage";
 
-type BoxType = "UPPER" | "MIDDLE" | "LOWER";
-
 type SessionBoxProps = {
   sessionContent:
     | SessionParagraphFragment
     | SessionParagraphMultipleImagesAttributesFragment;
   images: SessionImageAttributes | SessionImageAttributes[];
-  boxType?: BoxType;
 };
 
 export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
@@ -22,20 +19,28 @@ export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
     return <p>Ładowanie</p>;
   }
 
-  const { description, imagePositionLeft, title } =
+  const { description, imagePositionLeft, title, backgroundColor, marginTop } =
     sessionContent as SessionParagraphFragment;
 
   return (
-    <div className="bg-gray shadow-md rounded-3xl">
-      <div className="px-4 py-14 flex flex-col gap-10 items-center sm:px-8 md:px-14 md:py-20 md:gap-20">
+    <div
+      className={`shadow-md rounded-3xl lg:rounded-l-none 2xl:rounded-3xl ${
+        backgroundColor ? "bg-gray" : "bg-gray lg:bg-transparent lg:shadow-none"
+      }`}
+    >
+      <div
+        className={`px-4 py-14 flex flex-col gap-10 items-center sm:px-8 md:px-14 lg:justify-evenly lg:px-4 lg:py-10 lg:gap-0 ${
+          imagePositionLeft ? "lg:flex-row-reverse" : "lg:flex-row"
+        }`}
+      >
         <BoxContent title={title} description={description} />
         {Array.isArray(images) ? (
-          <div className="grid grid-cols-3 grid-rows-1 gap-2 sm:px-8 md:h-fit md:px-0 md:col-start-1 md:row-start-1">
+          <div className="w-full flex flex-wrap gap-1 lg:w-1/2">
             <MultipleImages images={images} />
           </div>
         ) : (
-          <div className="h-full w-full flex justify-center">
-            <SingleImage image={images} />
+          <div className="h-full w-full flex justify-center z-10 lg:w-1/3">
+            <SingleImage image={images} marginTop={marginTop} />
           </div>
         )}
       </div>

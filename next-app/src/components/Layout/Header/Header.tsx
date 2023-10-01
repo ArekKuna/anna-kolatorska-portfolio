@@ -31,7 +31,7 @@ export const Header = () => {
     <motion.header
       variants={hideHeaderVariants}
       animate={hideHeader ? "hidden" : "visible"}
-      className="fixed bg-white py-2 px-4 w-full flex justify-between shadow-lg md:px-8"
+      className="fixed bg-white py-2 px-4 w-full flex justify-between shadow-lg z-20 md:px-8"
     >
       <Link href="/" className="">
         <Logo className="w-full h-[90px]" />
