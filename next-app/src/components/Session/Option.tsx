@@ -17,11 +17,11 @@ export const Option = ({ option }: Optionprops) => {
   });
 
   return (
-    <div className="py-8 pl-8 pr-3 flex flex-col gap-6 rounded-3xl bg-gray last-of-type:mb-14">
+    <div className="w-full py-8 flex flex-col gap-6 rounded-3xl bg-gray md:w-[45%] lg:last-of-type:mb-0 last-of-type:mb-14">
       <h3 className="text-3xl text-center capitalize font-signRiyathi">
         {option.title}
       </h3>
-      {parse(clean)}
+      <div className="pl-8 pr-5 2xl:pl-12">{parse(clean)}</div>
     </div>
   );
 };

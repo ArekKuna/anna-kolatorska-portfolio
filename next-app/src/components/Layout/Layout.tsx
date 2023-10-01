@@ -1,6 +1,6 @@
 import { Footer } from "@/components/Layout/Footer/Footer";
-import { Header } from "@/components/Layout/Header/Header";
 import { ReactNode } from "react";
+import { Header } from "./Header/Header";
 
 type LayoutProps = {
   children: ReactNode;
@@ -12,7 +12,7 @@ export const Layout = ({ children, mainFont }: LayoutProps) => {
     <>
       <Header />
       <main
-        className={`pt-[106px] px-5 text-font font-lato ${mainFont} grid grid-cols-1 sm:px-14 sm:grid-cols-4 md:px-20 md:grid-cols-8 lg:px-0 lg:grid-cols-12 2xl:justify-items-center`}
+        className={`pt-[106px] text-font font-lato ${mainFont} grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12`}
       >
         {children}
       </main>

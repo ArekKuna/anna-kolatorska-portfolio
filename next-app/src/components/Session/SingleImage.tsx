@@ -14,13 +14,13 @@ export const SingleImage = ({ image, marginTop }: SingleImageProps) => {
     <Image
       src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
       alt={image.alt}
-      width={400}
+      width={500}
       height={500}
       blurDataURL={image.base64}
       onLoad={() => setBlurred(false)}
-      className={`rounded-3xl shadow-lg ${
-        marginTop ? "lg:-mt-[100px] xl:-mt-[150px]" : ""
-      } ${blurred ? "blur-lg" : ""} transition-all duration-700`}
+      className={`rounded-3xl shadow-lg lg:w-full ${
+        blurred ? "blur-lg" : ""
+      } transition-all duration-700`}
     />
   );
 };

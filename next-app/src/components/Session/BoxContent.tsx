@@ -9,8 +9,8 @@ const createMarkup = (description: string) => {
 
 export const BoxContent = ({ title, description }: BoxContentProps) => {
   return (
-    <div className="flex flex-col gap-10 lg:w-[40%]">
-      <h1 className="font-signRiyathi font-medium text-4xl text-center md:text-5xl">
+    <div className="flex flex-col gap-10 lg:w-[30%]">
+      <h1 className="font-signRiyathi font-medium text-4xl text-center">
         {title}
       </h1>
       <div

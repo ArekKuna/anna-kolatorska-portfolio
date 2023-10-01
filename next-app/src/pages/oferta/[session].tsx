@@ -44,7 +44,7 @@ export const SessionPage = ({
 
   return (
     <>
-      <SessionSection>
+      <SessionSection variant="session">
         <SessionBox sessionContent={upperSection} images={upperSectionImage} />
 
         <SessionBox sessionContent={midSection} images={midSectionImage} />
@@ -52,7 +52,7 @@ export const SessionPage = ({
         <SessionBox sessionContent={lowerSection} images={lowerSectionImages} />
       </SessionSection>
 
-      <SessionSection>
+      <SessionSection variant="options">
         <Options options={options} />
       </SessionSection>
     </>

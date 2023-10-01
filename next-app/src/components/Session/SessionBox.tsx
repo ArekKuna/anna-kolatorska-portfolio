@@ -25,6 +25,8 @@ export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
   return (
     <div
       className={`shadow-md rounded-3xl lg:rounded-l-none 2xl:rounded-3xl ${
+        marginTop ? "lg:-mt-[6%] 2xl:-mt-[5%]" : ""
+      } ${
         backgroundColor ? "bg-gray" : "bg-gray lg:bg-transparent lg:shadow-none"
       }`}
     >
@@ -35,11 +37,15 @@ export const SessionBox = ({ sessionContent, images }: SessionBoxProps) => {
       >
         <BoxContent title={title} description={description} />
         {Array.isArray(images) ? (
-          <div className="w-full flex flex-wrap gap-1 lg:w-1/2">
+          <div className="w-full flex flex-wrap gap-1 lg:w-[30%]">
             <MultipleImages images={images} />
           </div>
         ) : (
-          <div className="h-full w-full flex justify-center z-10 lg:w-1/3">
+          <div
+            className={`h-full w-full flex justify-center z-10 lg:w-[30%] ${
+              marginTop ? "xl:-mt-[5%]" : ""
+            }`}
+          >
             <SingleImage image={images} marginTop={marginTop} />
           </div>
         )}
