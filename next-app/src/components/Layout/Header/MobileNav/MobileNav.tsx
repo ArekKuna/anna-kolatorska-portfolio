@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { MobileNavDrawer } from "@/components/Layout/Header/MobileNav/MobileNavDrawer";
 import { MobileNavTrigger } from "@/components/Layout/Header/MobileNav/MobileNavTrigger";
 import { Socials } from "@/components/Socials/Socials";
-import { MobileNavDrawer } from "@/components/Layout/Header/MobileNav/MobileNavDrawer";
+import { useState } from "react";
 
 export const MobileNav = () => {
   const [openMobileMenuDrawer, setOpenMobileMenuDrawer] = useState(false);
@@ -15,7 +15,7 @@ export const MobileNav = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col flex-wrap justify-around col-span-1">
+      <div className="flex flex-col justify-center gap-4 md:flex-row md:gap-8">
         <Socials />
         <MobileNavTrigger onClick={handleOpenMobileMenuDrawer} />
       </div>

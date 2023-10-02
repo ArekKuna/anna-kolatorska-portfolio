@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lato: ["Lato, sans-serif"],
+        lato: ["var(--font-lato)"],
+        signRiyathi: ["SignRiyathi", "sans-serif"],
       },
-      boxShadow: {
-        top: "0 -0.1px 1px 0",
-        bottom: "0 0.1px 1px 0",
+      colors: {
+        gray: "#f5f5f5",
+        font: "#645b65",
       },
     },
   },

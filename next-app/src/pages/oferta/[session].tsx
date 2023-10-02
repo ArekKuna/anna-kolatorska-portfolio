@@ -1,12 +1,27 @@
+import { SessionSection } from "@/components/Layout/Sections/SessionSection";
+import { Options } from "@/components/Session/Options";
+import { SessionBox } from "@/components/Session/SessionBox";
 import { sdk } from "@/graphql/client";
-import { SessionAttributesFragment } from "@/graphql/generated";
+import {
+  SessionAttributesFragment,
+  SessionParagraphImageAttributesFragment,
+  SessionParagraphOptionsAttributesFragment,
+} from "@/graphql/generated";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { getPlaiceholder } from "plaiceholder";
+
+export type SessionImageAttributes = {
+  url: string;
+  alt: string;
+  base64: string;
+};
 
 type SessionPageProps = {
   session: SessionAttributesFragment;
-  upperSectionImage: string;
-  midSectionImage: string;
-  lowerSectionImages: string[];
+  upperSectionImage: SessionImageAttributes;
+  midSectionImage: SessionImageAttributes;
+  lowerSectionImages: SessionImageAttributes[];
+  options: SessionParagraphOptionsAttributesFragment[];
 };
 
 export const SessionPage = ({
@@ -14,19 +29,53 @@ export const SessionPage = ({
   upperSectionImage,
   midSectionImage,
   lowerSectionImages,
+  options,
 }: SessionPageProps) => {
+  if (
+    !session.upperSection ||
+    !session.midSection ||
+    !session.lowerSection ||
+    !options
+  ) {
+    return <p>Ładowanie...</p>;
+  }
+
+  const { upperSection, midSection, lowerSection } = session;
+
   return (
-    <div>
-      <div></div>
+    <>
+      <SessionSection variant="session">
+        <SessionBox sessionContent={upperSection} images={upperSectionImage} />
 
-      <div></div>
+        <SessionBox sessionContent={midSection} images={midSectionImage} />
 
-      <div></div>
-    </div>
+        <SessionBox sessionContent={lowerSection} images={lowerSectionImages} />
+      </SessionSection>
+
+      <SessionSection variant="options">
+        <Options options={options} />
+      </SessionSection>
+    </>
   );
 };
 
-export const getStaticProps: GetStaticProps<SessionPageProps> = async (
+const getStaticImage = async (
+  image: SessionParagraphImageAttributesFragment
+) => {
+  const url = image.attributes?.url;
+  const alt = image.attributes?.alternativeText;
+  const { base64 } = await getPlaiceholder(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`
+  );
+
+  return {
+    url,
+    alt,
+    base64,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const { params } = context;
@@ -47,27 +96,45 @@ export const getStaticProps: GetStaticProps<SessionPageProps> = async (
     return { notFound: true };
   }
 
-  const upperSectionImageUrl =
-    session.upperSection?.image?.data?.attributes?.url;
+  const upperSectionImageData = session.upperSection?.image?.data;
+  const midSectionImageData = session.midSection?.image?.data;
+  const lowerSectionImagesData = session.lowerSection?.images?.data;
+  const options = session.options;
 
-  const midSectionImageUrl = session.midSection?.image?.data?.attributes?.url;
-
-  const lowerSectionImages = session.lowerSection?.images?.data;
-
-  if (!upperSectionImageUrl || !midSectionImageUrl || !lowerSectionImages) {
+  if (
+    !upperSectionImageData ||
+    !midSectionImageData ||
+    !lowerSectionImagesData ||
+    !options
+  ) {
     return { notFound: true };
   }
 
-  const imagesUrls = lowerSectionImages
-    ?.map((session) => session.attributes?.url)
-    .filter((slug): slug is string => !!slug);
+  const upperSectionImageAttributes = await getStaticImage(
+    upperSectionImageData
+  );
+
+  const midSectionImageAttributes = await getStaticImage(midSectionImageData);
+
+  const lowerSectionImagesAttributes = await Promise.all(
+    lowerSectionImagesData.map(getStaticImage)
+  );
 
   return {
     props: {
       session,
-      upperSectionImage: upperSectionImageUrl,
-      midSectionImage: midSectionImageUrl,
-      lowerSectionImages: imagesUrls,
+      upperSectionImage: {
+        url: upperSectionImageAttributes.url,
+        alt: upperSectionImageAttributes.alt,
+        base64: upperSectionImageAttributes.base64,
+      },
+      midSectionImage: {
+        url: midSectionImageAttributes.url,
+        alt: midSectionImageAttributes.alt,
+        base64: midSectionImageAttributes.base64,
+      },
+      lowerSectionImages: lowerSectionImagesAttributes,
+      options,
     },
   };
 };

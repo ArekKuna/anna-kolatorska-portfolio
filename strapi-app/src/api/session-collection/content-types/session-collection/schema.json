@@ -15,20 +15,30 @@
     "upperSection": {
       "type": "component",
       "repeatable": false,
-      "component": "components.session-page"
+      "component": "components.session-page",
+      "required": true
     },
     "midSection": {
       "type": "component",
       "repeatable": false,
-      "component": "components.session-page"
+      "component": "components.session-page",
+      "required": true
     },
     "lowerSection": {
       "type": "component",
       "repeatable": false,
-      "component": "components.text-with-multiple-images-box"
+      "component": "components.text-with-multiple-images-box",
+      "required": true
     },
     "slug": {
       "type": "uid"
+    },
+    "options": {
+      "type": "dynamiczone",
+      "components": [
+        "components.options"
+      ],
+      "required": false
     }
   }
 }

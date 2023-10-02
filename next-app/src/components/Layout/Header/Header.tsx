@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { motion, useScroll } from "framer-motion";
-import { Logo } from "@/components/Logo/Logo";
-import { MobileNav } from "@/components/Layout/Header/MobileNav/MobileNav";
 import { hideHeaderVariants } from "@/components/Layout/Header/headerConfig";
+import { MobileNav } from "@/components/Layout/Header/MobileNav/MobileNav";
+import { Logo } from "@/components/Logo/Logo";
+import { motion, useScroll } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const [hideHeader, setHideHeader] = useState(false);
@@ -31,9 +31,9 @@ export const Header = () => {
     <motion.header
       variants={hideHeaderVariants}
       animate={hideHeader ? "hidden" : "visible"}
-      className="fixed p-2 w-full grid grid-cols-4 shadow-bottom shadow-black bg-white"
+      className="fixed bg-white py-2 px-4 w-full flex justify-between shadow-lg z-20 md:px-8"
     >
-      <Link href="/" className="flex justify-center col-span-3">
+      <Link href="/" className="">
         <Logo className="w-full h-[90px]" />
       </Link>
       <MobileNav />
