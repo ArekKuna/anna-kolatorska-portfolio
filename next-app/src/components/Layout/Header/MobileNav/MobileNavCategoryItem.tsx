@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
+import { NavigationMenuCategory } from "@/components/Layout/Header/headerConfig";
 import Link from "next/link";
-import { MobileNavigationMenuCategory } from "@/components/Layout/Header/headerConfig";
+import { useRouter } from "next/router";
 
 type MobileNavCategoryItemProps = {
-  categories: MobileNavigationMenuCategory;
+  categories: NavigationMenuCategory;
   onClick: () => void;
 };
 
@@ -32,7 +32,7 @@ export const MobileNavCategoryItem = ({
   );
 };
 
-const getStyles = (categories: MobileNavigationMenuCategory, path: string) => {
+const getStyles = (categories: NavigationMenuCategory, path: string) => {
   const activePath = path === categories.href;
 
   const submenuStyles = "pl-4 py-3 flex-1";

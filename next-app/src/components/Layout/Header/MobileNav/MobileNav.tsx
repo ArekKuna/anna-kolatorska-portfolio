@@ -3,7 +3,11 @@ import { MobileNavTrigger } from "@/components/Layout/Header/MobileNav/MobileNav
 import { Socials } from "@/components/Socials/Socials";
 import { useState } from "react";
 
-export const MobileNav = () => {
+type MobileNavProps = {
+  mainFont: string;
+};
+
+export const MobileNav = ({ mainFont }: MobileNavProps) => {
   const [openMobileMenuDrawer, setOpenMobileMenuDrawer] = useState(false);
 
   const handleOpenMobileMenuDrawer = () => {
@@ -15,13 +19,16 @@ export const MobileNav = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center gap-4 md:flex-row md:gap-8">
+      <div
+        className={`flex flex-col justify-center gap-4 font-lato ${mainFont} md:flex-row md:gap-8 lg:hidden`}
+      >
         <Socials />
         <MobileNavTrigger onClick={handleOpenMobileMenuDrawer} />
       </div>
       <MobileNavDrawer
         onClick={handleOpenMobileMenuDrawer}
         isMobileMenuDrawerOpen={openMobileMenuDrawer}
+        mainFont={mainFont}
       />
     </>
   );

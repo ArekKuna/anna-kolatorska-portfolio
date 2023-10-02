@@ -1,19 +1,19 @@
 import { ChevronDownIcon } from "@/components/Icons/ChevronDownIcon";
 
-export type MobileNavigationMenuCategory = {
+export type NavigationMenuCategory = {
   text: string;
   href: string;
 };
 
-export type MobileNavigationMenu = {
+export type NavigationMenu = {
   id: number;
   text: string;
   href?: string;
-  categories?: MobileNavigationMenuCategory[];
+  categories?: NavigationMenuCategory[];
   icon?: JSX.Element;
 };
 
-export const MobileMenuMap: MobileNavigationMenu[] = [
+export const navigationMap: NavigationMenu[] = [
   {
     id: 1,
     text: "home",
