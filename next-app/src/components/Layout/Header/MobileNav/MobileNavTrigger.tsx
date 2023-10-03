@@ -1,4 +1,4 @@
-import { HamburgerIcon } from "@/components/Icons/HamburgerIcon";
+import { HamburgerIcon } from "components/Icons/HamburgerIcon";
 
 type MobileNavTriggerProps = {
   onClick: () => void;

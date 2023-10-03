@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@/components/Icons/ChevronDownIcon";
+import { ChevronDownIcon } from "components/Icons/ChevronDownIcon";
 
 export type NavigationMenuCategory = {
   text: string;

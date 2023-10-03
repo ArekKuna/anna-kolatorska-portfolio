@@ -1,6 +1,6 @@
-import { SessionParagraphOptionsAttributesFragment } from "@/graphql/generated";
-import Custom404 from "@/pages/404";
-import { Option } from "./Option";
+import { Option } from "components/Session/Option";
+import { SessionParagraphOptionsAttributesFragment } from "graphql/generated";
+import Custom404 from "pages/404";
 
 type OptionsProps = {
   options: SessionParagraphOptionsAttributesFragment[];

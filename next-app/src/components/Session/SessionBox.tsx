@@ -1,11 +1,11 @@
-import { BoxContent } from "@/components/Session/BoxContent";
+import { BoxContent } from "components/Session/BoxContent";
+import { MultipleImages } from "components/Session/MultipleImages";
+import { SingleImage } from "components/Session/SingleImage";
 import {
   SessionParagraphFragment,
   SessionParagraphMultipleImagesAttributesFragment,
-} from "@/graphql/generated";
-import { SessionImageAttributes } from "@/pages/oferta/[session]";
-import { MultipleImages } from "./MultipleImages";
-import { SingleImage } from "./SingleImage";
+} from "graphql/generated";
+import { SessionImageAttributes } from "pages/oferta/[session]";
 
 type SessionBoxProps = {
   sessionContent:

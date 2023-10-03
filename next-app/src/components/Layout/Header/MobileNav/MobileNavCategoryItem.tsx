@@ -1,4 +1,4 @@
-import { NavigationMenuCategory } from "@/components/Layout/Header/headerConfig";
+import { NavigationMenuCategory } from "components/Layout/Header/headerConfig";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

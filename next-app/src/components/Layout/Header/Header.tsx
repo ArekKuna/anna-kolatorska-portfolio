@@ -1,11 +1,11 @@
-import { hideHeaderVariants } from "@/components/Layout/Header/headerConfig";
-import { MobileNav } from "@/components/Layout/Header/MobileNav/MobileNav";
-import { Logo } from "@/components/Logo/Logo";
-import { Socials } from "@/components/Socials/Socials";
+import { DesktopNav } from "components/Layout/Header/DesktopNav/DesktopNav";
+import { hideHeaderVariants } from "components/Layout/Header/headerConfig";
+import { MobileNav } from "components/Layout/Header/MobileNav/MobileNav";
+import { Logo } from "components/Logo/Logo";
+import { Socials } from "components/Socials/Socials";
 import { motion, useScroll } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { DesktopNav } from "./DesktopNav/DesktopNav";
 
 type HeaderProps = {
   mainFont: string;

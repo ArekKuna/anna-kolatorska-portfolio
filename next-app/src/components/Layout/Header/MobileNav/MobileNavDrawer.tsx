@@ -1,6 +1,6 @@
-import { CloseIcon } from "@/components/Icons/CloseIcon";
-import { drawerVariantsMap } from "@/components/Layout/Header/headerConfig";
-import { MobileNavMenu } from "@/components/Layout/Header/MobileNav/MobileNavMenu";
+import { CloseIcon } from "components/Icons/CloseIcon";
+import { drawerVariantsMap } from "components/Layout/Header/headerConfig";
+import { MobileNavMenu } from "components/Layout/Header/MobileNav/MobileNavMenu";
 import { AnimatePresence, motion } from "framer-motion";
 
 type MobileNavDrawerProps = {

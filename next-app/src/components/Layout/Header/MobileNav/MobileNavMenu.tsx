@@ -1,6 +1,6 @@
 // import { MobileNavItem } from "./MobileNavItem";
-import { navigationMap } from "@/components/Layout/Header/headerConfig";
-import { MobileNavItem } from "@/components/Layout/Header/MobileNav/MobileNavItem";
+import { navigationMap } from "components/Layout/Header/headerConfig";
+import { MobileNavItem } from "components/Layout/Header/MobileNav/MobileNavItem";
 
 type MobileNavMenuProps = {
   onClick: () => void;

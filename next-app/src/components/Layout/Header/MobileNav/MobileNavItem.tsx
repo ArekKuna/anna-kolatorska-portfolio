@@ -1,5 +1,5 @@
-import { NavigationMenu } from "@/components/Layout/Header/headerConfig";
-import { MobileNavCategoryItem } from "@/components/Layout/Header/MobileNav/MobileNavCategoryItem";
+import { NavigationMenu } from "components/Layout/Header/headerConfig";
+import { MobileNavCategoryItem } from "components/Layout/Header/MobileNav/MobileNavCategoryItem";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";

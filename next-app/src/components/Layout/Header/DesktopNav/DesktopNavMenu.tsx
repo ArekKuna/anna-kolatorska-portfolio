@@ -1,5 +1,5 @@
-import { navigationMap } from "@/components/Layout/Header/headerConfig";
-import { DesktopNavMenuItem } from "./DesktopNavMenuItem";
+import { DesktopNavMenuItem } from "components/Layout/Header/DesktopNav/DesktopNavMenuItem";
+import { navigationMap } from "components/Layout/Header/headerConfig";
 
 export const DesktopNavMenu = () => {
   return (

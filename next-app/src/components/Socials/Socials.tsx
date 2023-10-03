@@ -1,5 +1,5 @@
-import { FacebookIcon } from "@/components/Icons/FacebookIcon";
-import { InstagramIcon } from "@/components/Icons/InstagramIcon";
+import { FacebookIcon } from "components/Icons/FacebookIcon";
+import { InstagramIcon } from "components/Icons/InstagramIcon";
 
 export const Socials = () => {
   return (

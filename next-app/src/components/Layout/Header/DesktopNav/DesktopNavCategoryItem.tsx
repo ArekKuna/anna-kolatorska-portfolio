@@ -1,5 +1,5 @@
+import { NavigationMenuCategory } from "components/Layout/Header/headerConfig";
 import Link from "next/link";
-import { NavigationMenuCategory } from "../headerConfig";
 
 type DesktopNavCategoryItemProps = {
   onClick: () => void;
