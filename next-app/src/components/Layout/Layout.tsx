@@ -10,9 +10,9 @@ type LayoutProps = {
 export const Layout = ({ children, mainFont }: LayoutProps) => {
   return (
     <>
-      <Header />
+      <Header mainFont={mainFont} />
       <main
-        className={`pt-[106px] text-font font-lato ${mainFont} grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12`}
+        className={`pt-[90px] text-font font-lato ${mainFont} grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12`}
       >
         {children}
       </main>

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { MobileNavigationMenu } from "@/components/Layout/Header/headerConfig";
+import { NavigationMenu } from "@/components/Layout/Header/headerConfig";
 import { MobileNavCategoryItem } from "@/components/Layout/Header/MobileNav/MobileNavCategoryItem";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 type MobileNavItemprops = {
-  links: MobileNavigationMenu;
+  links: NavigationMenu;
   onClick: () => void;
 };
 
@@ -67,11 +67,7 @@ export const MobileNavItem = ({ links, onClick }: MobileNavItemprops) => {
   );
 };
 
-const getStyles = (
-  isOpen: boolean,
-  links: MobileNavigationMenu,
-  path: string
-) => {
+const getStyles = (isOpen: boolean, links: NavigationMenu, path: string) => {
   const activePath = path === links.href;
 
   const menuLinkStyles = "py-3 w-full flex-1";
