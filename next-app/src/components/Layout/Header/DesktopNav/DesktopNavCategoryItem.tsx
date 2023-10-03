@@ -11,8 +11,10 @@ export const DesktopNavCategoryItem = ({
   categories,
 }: DesktopNavCategoryItemProps) => {
   return (
-    <li className="px-2" onClick={onClick}>
-      <Link href={categories.href}>{categories.text}</Link>
+    <li className="p-2 flex hover:opacity-50">
+      <Link href={categories.href} onClick={onClick} className="w-full">
+        {categories.text}
+      </Link>
     </li>
   );
 };
