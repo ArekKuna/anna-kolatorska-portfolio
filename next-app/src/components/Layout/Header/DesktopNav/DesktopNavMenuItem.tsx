@@ -1,3 +1,4 @@
+import { useScroll } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -15,13 +16,20 @@ export const DesktopNavMenuItem = ({ links }: DesktopNavMenuItemProps) => {
   const path = router.pathname;
   const activePath = path === links.href;
 
-  const scroll = () => {
-    window.addEventListener("scroll", () => setIsSubmenuOpen(false));
+  const { scrollY } = useScroll();
+
+  const updateSubmenuOpenState = () => {
+    const current = scrollY.get();
+    const prev = scrollY.getPrevious();
+
+    if (current > 100 && current > prev) {
+      setIsSubmenuOpen(false);
+    }
   };
 
   useEffect(() => {
     setIsSubmenuOpen(false);
-    scroll();
+    return scrollY.on("change", () => updateSubmenuOpenState());
   }, [path]);
 
   return (
