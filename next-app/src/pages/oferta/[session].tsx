@@ -1,12 +1,12 @@
-import { SessionSection } from "@/components/Layout/Sections/SessionSection";
-import { Options } from "@/components/Session/Options";
-import { SessionBox } from "@/components/Session/SessionBox";
-import { sdk } from "@/graphql/client";
+import { SessionSection } from "components/Layout/Sections/SessionSection";
+import { Options } from "components/Session/Options";
+import { SessionBox } from "components/Session/SessionBox";
+import { sdk } from "graphql/client";
 import {
   SessionAttributesFragment,
   SessionParagraphImageAttributesFragment,
   SessionParagraphOptionsAttributesFragment,
-} from "@/graphql/generated";
+} from "graphql/generated";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { getPlaiceholder } from "plaiceholder";
 

@@ -1,6 +1,6 @@
-import { MobileNavDrawer } from "@/components/Layout/Header/MobileNav/MobileNavDrawer";
-import { MobileNavTrigger } from "@/components/Layout/Header/MobileNav/MobileNavTrigger";
-import { Socials } from "@/components/Socials/Socials";
+import { MobileNavDrawer } from "components/Layout/Header/MobileNav/MobileNavDrawer";
+import { MobileNavTrigger } from "components/Layout/Header/MobileNav/MobileNavTrigger";
+import { Socials } from "components/Socials/Socials";
 import { useState } from "react";
 
 type MobileNavProps = {

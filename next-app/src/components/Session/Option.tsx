@@ -1,7 +1,7 @@
-import { SessionParagraphOptionsAttributesFragment } from "@/graphql/generated";
-import Custom404 from "@/pages/404";
+import { SessionParagraphOptionsAttributesFragment } from "graphql/generated";
 import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
+import Custom404 from "pages/404";
 
 type Optionprops = {
   option: SessionParagraphOptionsAttributesFragment;

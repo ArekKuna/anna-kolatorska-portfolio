@@ -1,5 +1,5 @@
-import { Contacts } from "@/components/Layout/Footer/Contacts";
-import { Logo } from "@/components/Logo/Logo";
+import { Contacts } from "components/Layout/Footer/Contacts";
+import { Logo } from "components/Logo/Logo";
 import Link from "next/link";
 
 export const Footer = () => {

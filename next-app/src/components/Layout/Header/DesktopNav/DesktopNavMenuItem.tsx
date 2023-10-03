@@ -1,9 +1,9 @@
+import { DesktopNavCategoryItem } from "components/Layout/Header/DesktopNav/DesktopNavCategoryItem";
+import { NavigationMenu } from "components/Layout/Header/headerConfig";
 import { useScroll } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { NavigationMenu } from "../headerConfig";
-import { DesktopNavCategoryItem } from "./DesktopNavCategoryItem";
 
 type DesktopNavMenuItemProps = {
   links: NavigationMenu;

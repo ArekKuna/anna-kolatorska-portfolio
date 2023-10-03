@@ -1,5 +1,5 @@
-import { SessionImageAttributes } from "@/pages/oferta/[session]";
 import Image from "next/image";
+import { SessionImageAttributes } from "pages/oferta/[session]";
 import { useState } from "react";
 
 type SingleImageProps = {

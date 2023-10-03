@@ -1,4 +1,4 @@
-import { DesktopNavMenu } from "./DesktopNavMenu";
+import { DesktopNavMenu } from "components/Layout/Header/DesktopNav/DesktopNavMenu";
 
 type DesktopNavProps = {
   mainFont: string;
