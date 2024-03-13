@@ -22,6 +22,8 @@ export const DesktopNavMenuItem = ({ links }: DesktopNavMenuItemProps) => {
     const current = scrollY.get();
     const prev = scrollY.getPrevious();
 
+    if (!prev) return 0;
+
     if (current > 100 && current > prev) {
       setIsSubmenuOpen(false);
     }
