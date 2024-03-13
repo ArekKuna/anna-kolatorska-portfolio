@@ -20,6 +20,8 @@ export const Header = ({ mainFont }: HeaderProps) => {
     const current = scrollY.get();
     const prev = scrollY.getPrevious();
 
+    if (!prev) return 0;
+
     if (current < prev) {
       setHideHeader(false);
     }
