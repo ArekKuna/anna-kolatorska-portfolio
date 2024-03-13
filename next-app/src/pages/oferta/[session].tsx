@@ -64,9 +64,12 @@ const getStaticImage = async (
 ) => {
   const url = image.attributes?.url;
   const alt = image.attributes?.alternativeText;
-  const { base64 } = await getPlaiceholder(
+
+  const buffer = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`
-  );
+  ).then(async (res) => Buffer.from(await res.arrayBuffer()));
+
+  const { base64 } = await getPlaiceholder(buffer);
 
   return {
     url,
