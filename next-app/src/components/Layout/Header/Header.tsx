@@ -1,54 +1,34 @@
 import { DesktopNav } from "components/Layout/Header/DesktopNav/DesktopNav";
-import { hideHeaderVariants } from "components/Layout/Header/headerConfig";
 import { MobileNav } from "components/Layout/Header/MobileNav/MobileNav";
 import { Logo } from "components/Logo/Logo";
 import { Socials } from "components/Socials/Socials";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
+import { useHeader } from "components/Layout/Header/useHeader";
 
 type HeaderProps = {
   mainFont: string;
 };
 
 export const Header = ({ mainFont }: HeaderProps) => {
-  const [hideHeader, setHideHeader] = useState(false);
-
-  const { scrollY } = useScroll();
-
-  const updateSetHeaderState = () => {
-    const current = scrollY.get();
-    const prev = scrollY.getPrevious();
-
-    if (!prev) return 0;
-
-    if (current < prev) {
-      setHideHeader(false);
-    }
-
-    if (current > 100 && current > prev) {
-      setHideHeader(true);
-    }
-  };
-
-  useEffect(() => {
-    return scrollY.on("change", () => updateSetHeaderState());
-  });
+  const { animateHeaderVariants, isScrolledToTop } = useHeader();
 
   return (
     <motion.header
-      variants={hideHeaderVariants}
-      animate={hideHeader ? "hidden" : "visible"}
-      className={`fixed bg-white px-4 w-full flex justify-between shadow-lg z-20 md:px-8`}
+      variants={animateHeaderVariants}
+      animate={isScrolledToTop ? "hidden" : "visible"}
+      className={`fixed p-4 w-full flex justify-between z-20 ${
+        isScrolledToTop ? "shadow-none" : "shadow-lg"
+      } `}
     >
-      <Link href="/">
-        <Logo className="w-full h-[90px]" />
-      </Link>
-      <MobileNav mainFont={mainFont} />
       <DesktopNav mainFont={mainFont} />
-      <div className="hidden lg:flex">
-        <Socials />
-      </div>
+      <Link href="/">
+        <Logo className="w-3/4 bg-white rounded-[13px]" />
+      </Link>
+      {/* <MobileNav mainFont={mainFont} /> */}
+
+      <Socials />
     </motion.header>
   );
 };

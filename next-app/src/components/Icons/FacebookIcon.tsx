@@ -9,7 +9,7 @@ export const FacebookIcon = (props: SVGProps<SVGSVGElement>) => {
       href={facebookURL}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex justify-center items-center"
+      className="flex justify-center items-center hover:opacity-50"
     >
       <svg
         stroke="currentColor"

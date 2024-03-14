@@ -4,12 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lato: ["var(--font-lato)"],
+        inter: ["var(--font-inter)"],
         signRiyathi: ["SignRiyathi", "sans-serif"],
-      },
-      colors: {
-        gray: "#f5f5f5",
-        font: "#645b65",
       },
     },
   },
