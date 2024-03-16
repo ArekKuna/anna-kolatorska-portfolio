@@ -15,11 +15,11 @@ export const navigationMap: NavigationMenu[] = [
     href: "/",
   },
   {
-    id: 3,
+    id: 2,
     text: "portfolio",
   },
   {
-    id: 4,
+    id: 3,
     text: "kontakt",
   },
 ];

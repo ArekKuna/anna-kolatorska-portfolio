@@ -1,5 +1,4 @@
 import { DesktopNav } from "components/Layout/Header/DesktopNav/DesktopNav";
-import { MobileNav } from "components/Layout/Header/MobileNav/MobileNav";
 import { Logo } from "components/Logo/Logo";
 import { Socials } from "components/Socials/Socials";
 import { motion } from "framer-motion";
@@ -26,7 +25,6 @@ export const Header = ({ mainFont }: HeaderProps) => {
       <Link href="/">
         <Logo className="w-3/4 bg-white rounded-[13px]" />
       </Link>
-      {/* <MobileNav mainFont={mainFont} /> */}
 
       <Socials />
     </motion.header>

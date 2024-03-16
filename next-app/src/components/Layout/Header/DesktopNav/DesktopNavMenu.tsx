@@ -7,7 +7,7 @@ export const DesktopNavMenu = () => {
   return (
     <ul className="flex items-center gap-4 list-none text-base font-normal uppercase">
       {navigationMap.map((link) => (
-        <DesktopNavMenuItem link={link} />
+        <DesktopNavMenuItem key={link.id} link={link} />
       ))}
     </ul>
   );

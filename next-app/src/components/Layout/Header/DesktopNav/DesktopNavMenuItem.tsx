@@ -13,7 +13,6 @@ export const DesktopNavMenuItem = ({ link }: DesktopNavMenuItemProps) => {
 
   return (
     <li
-      key={link.id}
       className={`hover:opacity-50 cursor-pointer ${
         activePath ? "font-bold" : "font-medium"
       }`}
