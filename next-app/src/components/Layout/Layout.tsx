@@ -12,7 +12,7 @@ export const Layout = ({ children, mainFont }: LayoutProps) => {
     <>
       <Header mainFont={mainFont} />
       <main
-        className={`pt-[90px] text-font font-lato ${mainFont} grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12`}
+        className={`pt-[90px] font-lato ${mainFont} grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12 min-h-[5000px]`}
       >
         {children}
       </main>

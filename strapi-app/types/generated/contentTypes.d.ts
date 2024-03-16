@@ -362,45 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiSessionCollectionSessionCollection
-  extends Schema.CollectionType {
-  collectionName: 'session_collections';
-  info: {
-    singularName: 'session-collection';
-    pluralName: 'session-collections';
-    displayName: 'SessionCollection';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    upperSection: Attribute.Component<'components.session-page'> &
-      Attribute.Required;
-    midSection: Attribute.Component<'components.session-page'> &
-      Attribute.Required;
-    lowerSection: Attribute.Component<'components.text-with-multiple-images-box'> &
-      Attribute.Required;
-    slug: Attribute.UID;
-    options: Attribute.DynamicZone<['components.options']>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::session-collection.session-collection',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::session-collection.session-collection',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -827,6 +788,77 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiSessionCollectionSessionCollection
+  extends Schema.CollectionType {
+  collectionName: 'session_collections';
+  info: {
+    singularName: 'session-collection';
+    pluralName: 'session-collections';
+    displayName: 'SessionCollection';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    upperSection: Attribute.Component<'components.session-page'> &
+      Attribute.Required;
+    midSection: Attribute.Component<'components.session-page'> &
+      Attribute.Required;
+    lowerSection: Attribute.Component<'components.text-with-multiple-images-box'> &
+      Attribute.Required;
+    slug: Attribute.UID;
+    options: Attribute.DynamicZone<['components.options']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::session-collection.session-collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::session-collection.session-collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSliderSlider extends Schema.CollectionType {
+  collectionName: 'sliders';
+  info: {
+    singularName: 'slider';
+    pluralName: 'sliders';
+    displayName: 'slider';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slider: Attribute.Component<'components.home-slider', true>;
+    slug: Attribute.UID;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::slider.slider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::slider.slider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -837,7 +869,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::session-collection.session-collection': ApiSessionCollectionSessionCollection;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -846,6 +877,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::session-collection.session-collection': ApiSessionCollectionSessionCollection;
+      'api::slider.slider': ApiSliderSlider;
     }
   }
 }

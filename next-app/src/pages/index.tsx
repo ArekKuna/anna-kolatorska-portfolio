@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <>
       <Head>
@@ -9,7 +9,6 @@ export const HomePage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>HomePage</div>
     </>
   );
 };

@@ -1,12 +1,12 @@
 import "styles/globals.css";
 import { Layout } from "components/Layout/Layout";
 import type { AppProps } from "next/app";
-import { Lato } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const mainFont = Lato({
+const mainFont = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
-  variable: "--font-lato",
+  variable: "--font-inter",
 });
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -1,5 +1,15 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ComponentsHomeSlider extends Schema.Component {
+  collectionName: 'components_components_home_sliders';
+  info: {
+    displayName: 'homeSlider';
+  };
+  attributes: {
+    homeSlider: Attribute.Media;
+  };
+}
+
 export interface ComponentsOptions extends Schema.Component {
   collectionName: 'components_components_options';
   info: {
@@ -84,6 +94,7 @@ export interface TemplatesSessionTemplate extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'components.home-slider': ComponentsHomeSlider;
       'components.options': ComponentsOptions;
       'components.session-page': ComponentsSessionPage;
       'components.text-with-multiple-images-box': ComponentsTextWithMultipleImagesBox;
