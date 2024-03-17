@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         inter: ["var(--font-inter)"],
         signRiyathi: ["SignRiyathi", "sans-serif"],
+        didactGothic: ["var(--font-didact-gothic)"],
       },
     },
   },

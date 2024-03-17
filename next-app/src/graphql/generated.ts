@@ -20,6 +20,50 @@ export type Scalars = {
   Upload: { input: any; output: any; }
 };
 
+export type AboutMe = {
+  __typename?: 'AboutMe';
+  aboutMe?: Maybe<ComponentAboutMeAboutMe>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type AboutMeEntity = {
+  __typename?: 'AboutMeEntity';
+  attributes?: Maybe<AboutMe>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type AboutMeEntityResponse = {
+  __typename?: 'AboutMeEntityResponse';
+  data?: Maybe<AboutMeEntity>;
+};
+
+export type AboutMeEntityResponseCollection = {
+  __typename?: 'AboutMeEntityResponseCollection';
+  data: Array<AboutMeEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type AboutMeFiltersInput = {
+  aboutMe?: InputMaybe<ComponentAboutMeAboutMeFiltersInput>;
+  and?: InputMaybe<Array<InputMaybe<AboutMeFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<AboutMeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<AboutMeFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type AboutMeInput = {
+  aboutMe?: InputMaybe<ComponentAboutMeAboutMeInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -45,10 +89,33 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type ComponentAboutMeAboutMe = {
+  __typename?: 'ComponentAboutMeAboutMe';
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  image: UploadFileEntityResponse;
+  title: Scalars['String']['output'];
+};
+
+export type ComponentAboutMeAboutMeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentAboutMeAboutMeFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentAboutMeAboutMeFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentAboutMeAboutMeFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentAboutMeAboutMeInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentLayoutLayoutSlider = {
   __typename?: 'ComponentLayoutLayoutSlider';
   id: Scalars['ID']['output'];
-  imagesArray?: Maybe<UploadFileRelationResponseCollection>;
+  imagesArray: UploadFileRelationResponseCollection;
 };
 
 
@@ -125,7 +192,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentLayoutLayoutSlider | I18NLocale | LayoutSlider | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = AboutMe | ComponentAboutMeAboutMe | ComponentLayoutLayoutSlider | I18NLocale | LayoutSlider | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -286,6 +353,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createAboutMe?: Maybe<AboutMeEntityResponse>;
   createLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -293,6 +361,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteAboutMe?: Maybe<AboutMeEntityResponse>;
   deleteLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -311,6 +380,7 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateAboutMe?: Maybe<AboutMeEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -327,6 +397,11 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationCreateAboutMeArgs = {
+  data: AboutMeInput;
 };
 
 
@@ -352,6 +427,11 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteAboutMeArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -417,6 +497,12 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateAboutMeArgs = {
+  data: AboutMeInput;
+  id: Scalars['ID']['input'];
 };
 
 
@@ -486,6 +572,8 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  aboutMe?: Maybe<AboutMeEntityResponse>;
+  aboutMes?: Maybe<AboutMeEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   layoutSlider?: Maybe<LayoutSliderEntityResponse>;
@@ -499,6 +587,19 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryAboutMeArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryAboutMesArgs = {
+  filters?: InputMaybe<AboutMeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -977,21 +1078,69 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type GetAbouMeSectionQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type GetAbouMeSectionQuery = { __typename?: 'Query', aboutMe?: { __typename?: 'AboutMeEntityResponse', data?: { __typename?: 'AboutMeEntity', attributes?: { __typename?: 'AboutMe', aboutMe?: { __typename?: 'ComponentAboutMeAboutMe', title: string, description: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null } } | null } | null } | null } | null };
+
+export type AboutMeDataFragment = { __typename?: 'AboutMeEntity', attributes?: { __typename?: 'AboutMe', aboutMe?: { __typename?: 'ComponentAboutMeAboutMe', title: string, description: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null } } | null } | null };
+
+export type AboutMeAttributesFragment = { __typename?: 'AboutMe', aboutMe?: { __typename?: 'ComponentAboutMeAboutMe', title: string, description: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null } } | null };
+
+export type AboutMeImageDataFragment = { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null };
+
 export type GetLayoutSliderQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
-export type GetLayoutSliderQuery = { __typename?: 'Query', layoutSlider?: { __typename?: 'LayoutSliderEntityResponse', data?: { __typename?: 'LayoutSliderEntity', attributes?: { __typename?: 'LayoutSlider', layoutSlider?: { __typename?: 'ComponentLayoutLayoutSlider', imagesArray?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> } | null } | null } | null } | null } | null };
+export type GetLayoutSliderQuery = { __typename?: 'Query', layoutSlider?: { __typename?: 'LayoutSliderEntityResponse', data?: { __typename?: 'LayoutSliderEntity', attributes?: { __typename?: 'LayoutSlider', layoutSlider?: { __typename?: 'ComponentLayoutLayoutSlider', imagesArray: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> } } | null } | null } | null } | null };
 
-export type LayoutSliderAttributesFragment = { __typename?: 'LayoutSlider', layoutSlider?: { __typename?: 'ComponentLayoutLayoutSlider', imagesArray?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> } | null } | null };
+export type LayoutSliderAttributesFragment = { __typename?: 'LayoutSlider', layoutSlider?: { __typename?: 'ComponentLayoutLayoutSlider', imagesArray: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> } } | null };
 
-export type LayoutSliderImagesArrayFragment = { __typename?: 'ComponentLayoutLayoutSlider', imagesArray?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> } | null };
+export type LayoutSliderImagesArrayFragment = { __typename?: 'ComponentLayoutLayoutSlider', imagesArray: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> } };
 
 export type LayoutSliderImagesArrayDataFragment = { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null }> };
 
 export type LayoutSliderImagesAttributesFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null };
 
+export const AboutMeImageDataFragmentDoc = gql`
+    fragment AboutMeImageData on UploadFileEntityResponse {
+  data {
+    attributes {
+      url
+      width
+      height
+      alternativeText
+      name
+      hash
+      mime
+      provider
+      size
+    }
+  }
+}
+    `;
+export const AboutMeAttributesFragmentDoc = gql`
+    fragment AboutMeAttributes on AboutMe {
+  aboutMe {
+    title
+    description
+    image {
+      ...AboutMeImageData
+    }
+  }
+}
+    ${AboutMeImageDataFragmentDoc}`;
+export const AboutMeDataFragmentDoc = gql`
+    fragment AboutMeData on AboutMeEntity {
+  attributes {
+    ...AboutMeAttributes
+  }
+}
+    ${AboutMeAttributesFragmentDoc}`;
 export const LayoutSliderImagesAttributesFragmentDoc = gql`
     fragment LayoutSliderImagesAttributes on UploadFileEntity {
   attributes {
@@ -1028,6 +1177,15 @@ export const LayoutSliderAttributesFragmentDoc = gql`
   }
 }
     ${LayoutSliderImagesArrayFragmentDoc}`;
+export const GetAbouMeSectionDocument = gql`
+    query GetAbouMeSection($slug: ID) {
+  aboutMe(id: $slug) {
+    data {
+      ...AboutMeData
+    }
+  }
+}
+    ${AboutMeDataFragmentDoc}`;
 export const GetLayoutSliderDocument = gql`
     query GetLayoutSlider($slug: ID) {
   layoutSlider(id: $slug) {
@@ -1047,6 +1205,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    GetAbouMeSection(variables?: GetAbouMeSectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetAbouMeSectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAbouMeSectionQuery>(GetAbouMeSectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAbouMeSection', 'query', variables);
+    },
     GetLayoutSlider(variables?: GetLayoutSliderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetLayoutSliderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetLayoutSliderQuery>(GetLayoutSliderDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetLayoutSlider', 'query', variables);
     }

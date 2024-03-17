@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
-import { FormattedLayoutSliderImagesData } from "pages/index";
+import { FormattedImageData } from "pages/types/types";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
 
 type Props = {
-  data: FormattedLayoutSliderImagesData[];
+  data: FormattedImageData[];
 };
 
 export const HomePageSlider = ({ data }: Props) => {
