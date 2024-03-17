@@ -1,0 +1,41 @@
+query GetLayoutSlider($slug: ID) {
+  layoutSlider(id: $slug) {
+    data {
+      attributes {
+        ...LayoutSliderAttributes
+      }
+    }
+  }
+}
+
+fragment LayoutSliderAttributes on LayoutSlider {
+  layoutSlider {
+    ...LayoutSliderImagesArray
+  }
+}
+
+fragment LayoutSliderImagesArray on ComponentLayoutLayoutSlider {
+  imagesArray {
+    ...LayoutSliderImagesArrayData
+  }
+}
+
+fragment LayoutSliderImagesArrayData on UploadFileRelationResponseCollection {
+  data {
+    ...LayoutSliderImagesAttributes
+  }
+}
+
+fragment LayoutSliderImagesAttributes on UploadFileEntity {
+  attributes {
+    url
+    width
+    height
+    alternativeText
+    name
+    hash
+    mime
+    provider
+    size
+  }
+}

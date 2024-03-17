@@ -5,7 +5,7 @@ export const DesktopNavMenu = () => {
   const { navigationMap } = useHeader();
 
   return (
-    <ul className="flex items-center gap-4 list-none text-base font-normal uppercase">
+    <ul className="flex items-center gap-8 list-none text-base font-normal uppercase">
       {navigationMap.map((link) => (
         <DesktopNavMenuItem key={link.id} link={link} />
       ))}

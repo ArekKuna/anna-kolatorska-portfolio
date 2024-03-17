@@ -1,6 +1,21 @@
+import { sdk } from "graphql/client";
+import { GetStaticProps } from "next";
 import Head from "next/head";
+import { HomePageSlider } from "components/HomePageSlider/HomePageSlider";
+import { UploadFileEntity } from "graphql/generated";
+import { getPlaiceholder } from "plaiceholder";
 
-const HomePage = () => {
+export type FormattedLayoutSliderImagesData = {
+  url: string;
+  alt: string;
+  base64: string;
+};
+
+type Props = {
+  formattedLayoutSliderImagesData: FormattedLayoutSliderImagesData[];
+};
+
+const HomePage = ({ formattedLayoutSliderImagesData }: Props) => {
   return (
     <>
       <Head>
@@ -9,8 +24,47 @@ const HomePage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <HomePageSlider data={formattedLayoutSliderImagesData} />
     </>
   );
+};
+
+const getStaticImage = async (image: UploadFileEntity) => {
+  const url = image.attributes?.url;
+  const alt = image.attributes?.alternativeText;
+
+  const buffer = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`
+  ).then(async (res) => Buffer.from(await res.arrayBuffer()));
+
+  const { base64 } = await getPlaiceholder(buffer);
+
+  return {
+    url,
+    alt,
+    base64,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { layoutSlider } = await sdk.GetLayoutSlider({
+    slug: "1",
+  });
+
+  const layoutSliderImagesData =
+    layoutSlider?.data?.attributes?.layoutSlider?.imagesArray?.data;
+
+  if (!layoutSliderImagesData) return { notFound: true };
+
+  const formattedLayoutSliderImagesData = await Promise.all(
+    layoutSliderImagesData.map(getStaticImage)
+  );
+
+  return {
+    props: {
+      formattedLayoutSliderImagesData,
+    },
+  };
 };
 
 export default HomePage;

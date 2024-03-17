@@ -6,7 +6,7 @@ type DesktopNavProps = {
 
 export const DesktopNav = ({ mainFont }: DesktopNavProps) => {
   return (
-    <div className={`flex justify-center items-end ${mainFont} font-inter`}>
+    <div className={`flex justify-center items-center ${mainFont} font-inter`}>
       <DesktopNavMenu />
     </div>
   );

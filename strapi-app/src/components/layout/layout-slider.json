@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_layout_layout_sliders",
+  "info": {
+    "displayName": "layoutSlider",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "imagesArray": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
