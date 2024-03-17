@@ -3,7 +3,6 @@ import { Logo } from "components/Logo/Logo";
 import { Socials } from "components/Socials/Socials";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
 import { useHeader } from "components/Layout/Header/useHeader";
 
 type HeaderProps = {
@@ -17,13 +16,13 @@ export const Header = ({ mainFont }: HeaderProps) => {
     <motion.header
       variants={animateHeaderVariants}
       animate={isScrolledToTop ? "hidden" : "visible"}
-      className={`fixed p-4 w-full flex justify-between z-20 ${
+      className={`fixed px-8 w-full flex justify-between z-20 ${
         isScrolledToTop ? "shadow-none" : "shadow-lg"
       } `}
     >
       <DesktopNav mainFont={mainFont} />
       <Link href="/">
-        <Logo className="w-3/4 bg-white rounded-[13px]" />
+        <Logo />
       </Link>
 
       <Socials />

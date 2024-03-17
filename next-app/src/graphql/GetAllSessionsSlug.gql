@@ -1,9 +1,0 @@
-query GetAllSessionsSlug {
-  sessionCollections {
-    data {
-      attributes {
-        slug
-      }
-    }
-  }
-}

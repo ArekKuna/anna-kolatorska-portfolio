@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "sliders",
+  "collectionName": "layout_sliders",
   "info": {
-    "singularName": "slider",
-    "pluralName": "sliders",
-    "displayName": "slider",
+    "singularName": "layout-slider",
+    "pluralName": "layout-sliders",
+    "displayName": "LayoutSlider",
     "description": ""
   },
   "options": {
@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "slider": {
+    "layoutSlider": {
       "type": "component",
-      "repeatable": true,
-      "component": "components.home-slider"
+      "repeatable": false,
+      "component": "layout.layout-slider"
     },
     "slug": {
       "type": "uid"

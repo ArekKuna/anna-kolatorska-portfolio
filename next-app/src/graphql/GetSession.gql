@@ -1,66 +1,66 @@
-query GetSession($slug: String!) {
-  sessionCollections(filters: { slug: { eq: $slug } }) {
-    data {
-      attributes {
-        ...SessionAttributes
-      }
-    }
-  }
-}
+# query GetSession($slug: String!) {
+#   sessionCollections(filters: { slug: { eq: $slug } }) {
+#     data {
+#       attributes {
+#         ...SessionAttributes
+#       }
+#     }
+#   }
+# }
 
-fragment SessionAttributes on SessionCollection {
-  upperSection {
-    ...SessionParagraph
-  }
-  midSection {
-    ...SessionParagraph
-  }
-  lowerSection {
-    ...SessionParagraphMultipleImagesAttributes
-  }
-  options {
-    ...SessionParagraphOptionsAttributes
-  }
-  slug
-}
+# fragment SessionAttributes on SessionCollection {
+#   upperSection {
+#     ...SessionParagraph
+#   }
+#   midSection {
+#     ...SessionParagraph
+#   }
+#   lowerSection {
+#     ...SessionParagraphMultipleImagesAttributes
+#   }
+#   options {
+#     ...SessionParagraphOptionsAttributes
+#   }
+#   slug
+# }
 
-fragment SessionParagraph on ComponentComponentsSessionPage {
-  id
-  title
-  description
-  imagePositionLeft
-  backgroundColor
-  marginTop
-  image {
-    data {
-      ...SessionParagraphImageAttributes
-    }
-  }
-}
+# fragment SessionParagraph on ComponentComponentsSessionPage {
+#   id
+#   title
+#   description
+#   imagePositionLeft
+#   backgroundColor
+#   marginTop
+#   image {
+#     data {
+#       ...SessionParagraphImageAttributes
+#     }
+#   }
+# }
 
-fragment SessionParagraphMultipleImagesAttributes on ComponentComponentsTextWithMultipleImagesBox {
-  id
-  title
-  imagePositionLeft
-  backgroundColor
-  marginTop
-  description
-  images {
-    data {
-      ...SessionParagraphImageAttributes
-    }
-  }
-}
+# fragment SessionParagraphMultipleImagesAttributes on ComponentComponentsTextWithMultipleImagesBox {
+#   id
+#   title
+#   imagePositionLeft
+#   backgroundColor
+#   marginTop
+#   description
+#   images {
+#     data {
+#       ...SessionParagraphImageAttributes
+#     }
+#   }
+# }
 
-fragment SessionParagraphImageAttributes on UploadFileEntity {
-  attributes {
-    url
-    alternativeText
-  }
-}
+# fragment SessionParagraphImageAttributes on UploadFileEntity {
+#   attributes {
+#     url
+#     alternativeText
+#   }
+# }
 
-fragment SessionParagraphOptionsAttributes on ComponentComponentsOptions {
-  id
-  title
-  list
-}
+# fragment SessionParagraphOptionsAttributes on ComponentComponentsOptions {
+#   id
+#   title
+#   list
+# }

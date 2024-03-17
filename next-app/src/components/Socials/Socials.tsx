@@ -3,7 +3,7 @@ import { InstagramIcon } from "components/Icons/InstagramIcon";
 
 export const Socials = () => {
   return (
-    <div className="flex justify-center items-end gap-3">
+    <div className="flex justify-center items-center gap-3">
       <FacebookIcon />
       <InstagramIcon />
     </div>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "graphql-codegen --config codegen.yml & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -20,7 +20,8 @@
     "plaiceholder": "^3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.2",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",
