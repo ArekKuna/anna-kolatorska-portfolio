@@ -4,18 +4,18 @@ import Head from "next/head";
 import { HomePageSlider } from "components/HomePageSlider/HomePageSlider";
 import { UploadFileEntity } from "graphql/generated";
 import { getPlaiceholder } from "plaiceholder";
-
-export type FormattedLayoutSliderImagesData = {
-  url: string;
-  alt: string;
-  base64: string;
-};
+import { AboutMe } from "components/AboutMe/AboutMe";
+import { AboutMeSectionData, FormattedImageData } from "pages/types/types";
 
 type Props = {
-  formattedLayoutSliderImagesData: FormattedLayoutSliderImagesData[];
+  formattedLayoutSliderImagesData: FormattedImageData[];
+  aboutMeSectionData: AboutMeSectionData;
 };
 
-const HomePage = ({ formattedLayoutSliderImagesData }: Props) => {
+const HomePage = ({
+  formattedLayoutSliderImagesData,
+  aboutMeSectionData,
+}: Props) => {
   return (
     <>
       <Head>
@@ -25,6 +25,7 @@ const HomePage = ({ formattedLayoutSliderImagesData }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HomePageSlider data={formattedLayoutSliderImagesData} />
+      <AboutMe data={aboutMeSectionData} />
     </>
   );
 };
@@ -51,18 +52,36 @@ export const getStaticProps: GetStaticProps = async () => {
     slug: "1",
   });
 
+  const { aboutMe } = await sdk.GetAbouMeSection({
+    slug: "1",
+  });
+  console.log(aboutMe);
   const layoutSliderImagesData =
     layoutSlider?.data?.attributes?.layoutSlider?.imagesArray?.data;
 
-  if (!layoutSliderImagesData) return { notFound: true };
+  const aboutMeSectionData = aboutMe?.data?.attributes?.aboutMe;
+
+  const aboutMeSectionImage = aboutMeSectionData?.image?.data;
+
+  if (!layoutSliderImagesData || !aboutMeSectionData || !aboutMeSectionImage)
+    return { notFound: true };
 
   const formattedLayoutSliderImagesData = await Promise.all(
     layoutSliderImagesData.map(getStaticImage)
   );
 
+  const formattedAboutMrSectionImage = await getStaticImage(
+    aboutMeSectionImage
+  );
+
   return {
     props: {
       formattedLayoutSliderImagesData,
+      aboutMeSectionData: {
+        title: aboutMeSectionData.title,
+        description: aboutMeSectionData.description,
+        image: formattedAboutMrSectionImage,
+      },
     },
   };
 };

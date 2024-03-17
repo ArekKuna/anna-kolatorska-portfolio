@@ -1,0 +1,39 @@
+query GetAbouMeSection($slug: ID) {
+  aboutMe(id: $slug) {
+    data {
+      ...AboutMeData
+    }
+  }
+}
+
+fragment AboutMeData on AboutMeEntity {
+  attributes {
+    ...AboutMeAttributes
+  }
+}
+
+fragment AboutMeAttributes on AboutMe {
+  aboutMe {
+    title
+    description
+    image {
+      ...AboutMeImageData
+    }
+  }
+}
+
+fragment AboutMeImageData on UploadFileEntityResponse {
+  data {
+    attributes {
+      url
+      width
+      height
+      alternativeText
+      name
+      hash
+      mime
+      provider
+      size
+    }
+  }
+}
