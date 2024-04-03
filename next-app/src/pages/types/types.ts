@@ -2,6 +2,8 @@ export type FormattedImageData = {
   url: string;
   alt: string;
   base64: string;
+  width: number;
+  height: number;
 };
 
 export type AboutMeSectionData = {

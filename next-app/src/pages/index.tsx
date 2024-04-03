@@ -34,10 +34,10 @@ const HomePage = ({
       <section className="col-span-full">
         <HomePageSlider data={formattedLayoutSliderImagesData} />
       </section>
-      <section className="grid col-span-full">
+      <section className="grid col-span-10 col-start-2">
         <AboutMe data={aboutMeSectionData} />
       </section>
-      <section className="grid grid-cols-12 col-span-full gap-y-60">
+      <section className="grid grid-cols-12 col-span-full gap-28">
         {sessionsData.map((session) => (
           <Session key={session.id} session={session} />
         ))}
@@ -49,6 +49,8 @@ const HomePage = ({
 const getStaticImage = async (image: UploadFileEntity) => {
   const url = image.attributes?.url;
   const alt = image.attributes?.alternativeText;
+  const width = image.attributes?.width;
+  const height = image.attributes?.height;
 
   const buffer = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`
@@ -60,6 +62,8 @@ const getStaticImage = async (image: UploadFileEntity) => {
     url,
     alt,
     base64,
+    width,
+    height,
   };
 };
 

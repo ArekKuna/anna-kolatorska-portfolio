@@ -16,12 +16,14 @@ export const AboutMe = ({ data }: Props) => {
   const clean = DOMPurify.sanitize(description);
 
   return (
-    <div className="col-start-2 col-end-12 grid grid-cols-12 gap-16">
-      <div className="flex flex-col gap-4 col-start-2 justify-end items-end col-span-5">
-        <h3 className="font-didactGothic text-5xl text-[#757575]">{title}</h3>
+    <div className="flex gap-20">
+      <div className="w-1/2 flex flex-col justify-center gap-4">
+        <h3 className="font-didactGothic text-5xl text-[#757575] self-end">
+          {title}
+        </h3>
         <p className="whitespace-pre-line text-end">{parse(clean)}</p>
       </div>
-      <div className="col-span-5 flex justify-center items-center col-start-7">
+      <div className="w-1/2">
         <Image
           src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${image.url}`}
           alt={image.alt ?? ""}
@@ -29,7 +31,7 @@ export const AboutMe = ({ data }: Props) => {
           height={500}
           blurDataURL={image.base64}
           onLoad={() => setBlurred(false)}
-          className={`transition-all duration-1000 w-full h-full ${
+          className={`transition-all duration-1000 h-full w-full ${
             blurred ? "blur-lg" : "blur-none"
           }`}
         />
