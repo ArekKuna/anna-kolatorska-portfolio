@@ -852,6 +852,36 @@ export interface ApiLayoutSliderLayoutSlider extends Schema.CollectionType {
   };
 }
 
+export interface ApiSessionsSessions extends Schema.CollectionType {
+  collectionName: 'sessionss';
+  info: {
+    singularName: 'sessions';
+    pluralName: 'sessionss';
+    displayName: 'Sessions';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    session: Attribute.Component<'session.session', true> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sessions.sessions',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sessions.sessions',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -872,6 +902,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about-me.about-me': ApiAboutMeAboutMe;
       'api::layout-slider.layout-slider': ApiLayoutSliderLayoutSlider;
+      'api::sessions.sessions': ApiSessionsSessions;
     }
   }
 }

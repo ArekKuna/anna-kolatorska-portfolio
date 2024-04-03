@@ -9,3 +9,12 @@ export type AboutMeSectionData = {
   description: string;
   image: FormattedImageData;
 };
+
+export type SessionData = {
+  description: string;
+  id: string;
+  image: FormattedImageData;
+  ltr: boolean;
+  subTitle: string;
+  title: string;
+};

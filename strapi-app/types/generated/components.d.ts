@@ -24,11 +24,26 @@ export interface LayoutLayoutSlider extends Schema.Component {
   };
 }
 
+export interface SessionSession extends Schema.Component {
+  collectionName: 'components_session_sessions';
+  info: {
+    displayName: 'Session';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subTitle: Attribute.String & Attribute.Required;
+    description: Attribute.RichText & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    ltr: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'about-me.about-me': AboutMeAboutMe;
       'layout.layout-slider': LayoutLayoutSlider;
+      'session.session': SessionSession;
     }
   }
 }

@@ -136,6 +136,35 @@ export type ComponentLayoutLayoutSliderInput = {
   imagesArray?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
+export type ComponentSessionSession = {
+  __typename?: 'ComponentSessionSession';
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  image: UploadFileEntityResponse;
+  ltr: Scalars['Boolean']['output'];
+  subTitle: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type ComponentSessionSessionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSessionSessionFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  ltr?: InputMaybe<BooleanFilterInput>;
+  not?: InputMaybe<ComponentSessionSessionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSessionSessionFiltersInput>>>;
+  subTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSessionSessionInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Scalars['ID']['input']>;
+  ltr?: InputMaybe<Scalars['Boolean']['input']>;
+  subTitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -192,7 +221,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = AboutMe | ComponentAboutMeAboutMe | ComponentLayoutLayoutSlider | I18NLocale | LayoutSlider | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = AboutMe | ComponentAboutMeAboutMe | ComponentLayoutLayoutSlider | ComponentSessionSession | I18NLocale | LayoutSlider | Sessions | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -355,6 +384,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAboutMe?: Maybe<AboutMeEntityResponse>;
   createLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
+  createSessions?: Maybe<SessionsEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -363,6 +393,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteAboutMe?: Maybe<AboutMeEntityResponse>;
   deleteLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
+  deleteSessions?: Maybe<SessionsEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -383,6 +414,7 @@ export type Mutation = {
   updateAboutMe?: Maybe<AboutMeEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
+  updateSessions?: Maybe<SessionsEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -407,6 +439,11 @@ export type MutationCreateAboutMeArgs = {
 
 export type MutationCreateLayoutSliderArgs = {
   data: LayoutSliderInput;
+};
+
+
+export type MutationCreateSessionsArgs = {
+  data: SessionsInput;
 };
 
 
@@ -436,6 +473,11 @@ export type MutationDeleteAboutMeArgs = {
 
 
 export type MutationDeleteLayoutSliderArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteSessionsArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -518,6 +560,12 @@ export type MutationUpdateLayoutSliderArgs = {
 };
 
 
+export type MutationUpdateSessionsArgs = {
+  data: SessionsInput;
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID']['input'];
@@ -579,6 +627,8 @@ export type Query = {
   layoutSlider?: Maybe<LayoutSliderEntityResponse>;
   layoutSliders?: Maybe<LayoutSliderEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  sessions?: Maybe<SessionsEntityResponse>;
+  sessionss?: Maybe<SessionsEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -622,6 +672,19 @@ export type QueryLayoutSliderArgs = {
 
 export type QueryLayoutSlidersArgs = {
   filters?: InputMaybe<LayoutSliderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QuerySessionsArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QuerySessionssArgs = {
+  filters?: InputMaybe<SessionsFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -678,6 +741,54 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type Sessions = {
+  __typename?: 'Sessions';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  session: Array<Maybe<ComponentSessionSession>>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type SessionsSessionArgs = {
+  filters?: InputMaybe<ComponentSessionSessionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type SessionsEntity = {
+  __typename?: 'SessionsEntity';
+  attributes?: Maybe<Sessions>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type SessionsEntityResponse = {
+  __typename?: 'SessionsEntityResponse';
+  data?: Maybe<SessionsEntity>;
+};
+
+export type SessionsEntityResponseCollection = {
+  __typename?: 'SessionsEntityResponseCollection';
+  data: Array<SessionsEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SessionsFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SessionsFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<SessionsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SessionsFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  session?: InputMaybe<ComponentSessionSessionFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SessionsInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  session?: InputMaybe<Array<InputMaybe<ComponentSessionSessionInput>>>;
 };
 
 export type StringFilterInput = {
@@ -1106,6 +1217,13 @@ export type LayoutSliderImagesArrayDataFragment = { __typename?: 'UploadFileRela
 
 export type LayoutSliderImagesAttributesFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null };
 
+export type GetSessionsQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type GetSessionsQuery = { __typename?: 'Query', sessions?: { __typename?: 'SessionsEntityResponse', data?: { __typename?: 'SessionsEntity', attributes?: { __typename?: 'Sessions', session: Array<{ __typename?: 'ComponentSessionSession', id: string, title: string, subTitle: string, description: string, ltr: boolean, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null } } | null> } | null } | null } | null };
+
 export const AboutMeImageDataFragmentDoc = gql`
     fragment AboutMeImageData on UploadFileEntityResponse {
   data {
@@ -1197,6 +1315,38 @@ export const GetLayoutSliderDocument = gql`
   }
 }
     ${LayoutSliderAttributesFragmentDoc}`;
+export const GetSessionsDocument = gql`
+    query GetSessions($slug: ID) {
+  sessions(id: $slug) {
+    data {
+      attributes {
+        session {
+          id
+          title
+          subTitle
+          description
+          ltr
+          image {
+            data {
+              attributes {
+                url
+                width
+                height
+                alternativeText
+                name
+                hash
+                mime
+                provider
+                size
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1210,6 +1360,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetLayoutSlider(variables?: GetLayoutSliderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetLayoutSliderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetLayoutSliderQuery>(GetLayoutSliderDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetLayoutSlider', 'query', variables);
+    },
+    GetSessions(variables?: GetSessionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSessionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSessionsQuery>(GetSessionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSessions', 'query', variables);
     }
   };
 }
