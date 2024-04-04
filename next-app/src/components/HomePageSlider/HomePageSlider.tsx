@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import Image from "next/image";
 import { FormattedImageData } from "pages/types/types";
+import { Photo } from "components/Layout/Photo/Photo";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -19,26 +19,23 @@ export const HomePageSlider = ({ data }: Props) => {
       className="col-span-12 h-screen w-screen"
       modules={[Autoplay, EffectFade]}
       autoplay={{ delay: 3000 }}
-      speed={2000}
+      speed={1000}
       fadeEffect={{ crossFade: true }}
       effect="fade"
     >
       {data.map((image) => {
-        const { alt, base64, url } = image;
+        const { alt, base64, url, height, width } = image;
         return (
           <SwiperSlide
             key={url}
             className="w-full h-full flex justify-center items-center"
           >
-            <Image
-              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`}
-              alt={alt ?? ""}
-              blurDataURL={base64}
-              onLoad={() => setBlurred(false)}
-              fill
-              className={`opacity-70 transition-all duration-1000 ${
-                blurred ? "blur-lg" : "blur-none"
-              }`}
+            <Photo
+              alt={alt}
+              base64={base64}
+              height={height}
+              url={url}
+              width={width}
             />
           </SwiperSlide>
         );

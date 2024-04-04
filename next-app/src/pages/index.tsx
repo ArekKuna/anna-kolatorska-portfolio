@@ -5,12 +5,13 @@ import { UploadFileEntity } from "graphql/generated";
 import { getPlaiceholder } from "plaiceholder";
 import { HomePageSlider } from "components/HomePageSlider/HomePageSlider";
 import { AboutMe } from "components/AboutMe/AboutMe";
-import { Session } from "components/Session/Session";
+import { SessionInfoLtr } from "components/SessionInfo/SessionInfoLtr/SessionInfoLtr";
 import {
   AboutMeSectionData,
   FormattedImageData,
   SessionData,
 } from "pages/types/types";
+import { SessionInfoRtl } from "components/SessionInfo/SessionInfRtl/SessionInfoRtl";
 
 type Props = {
   formattedLayoutSliderImagesData: FormattedImageData[];
@@ -34,13 +35,17 @@ const HomePage = ({
       <section className="col-span-full">
         <HomePageSlider data={formattedLayoutSliderImagesData} />
       </section>
-      <section className="grid col-span-10 col-start-2">
+      <section className="grid col-span-10 col-start-2 pb-10">
         <AboutMe data={aboutMeSectionData} />
       </section>
-      <section className="grid grid-cols-12 col-span-full gap-28">
-        {sessionsData.map((session) => (
-          <Session key={session.id} session={session} />
-        ))}
+      <section className="grid grid-cols-12 col-span-full gap-y-60">
+        {sessionsData.map((session) =>
+          session.ltr ? (
+            <SessionInfoLtr key={session.id} session={session} />
+          ) : (
+            <SessionInfoRtl key={session.id} session={session} />
+          )
+        )}
       </section>
     </>
   );
