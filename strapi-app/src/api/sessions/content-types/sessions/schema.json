@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sessionss",
+  "info": {
+    "singularName": "sessions",
+    "pluralName": "sessionss",
+    "displayName": "Sessions"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "session": {
+      "type": "component",
+      "repeatable": true,
+      "component": "session.session",
+      "required": true
+    }
+  }
+}

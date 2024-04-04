@@ -1,0 +1,30 @@
+query GetSessions($slug: ID) {
+  sessions(id: $slug) {
+    data {
+      attributes {
+        session {
+          id
+          title
+          subTitle
+          description
+          ltr
+          image {
+            data {
+              attributes {
+                url
+                width
+                height
+                alternativeText
+                name
+                hash
+                mime
+                provider
+                size
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

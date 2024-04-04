@@ -1,20 +1,28 @@
-import { sdk } from "graphql/client";
-import { GetStaticProps } from "next";
 import Head from "next/head";
-import { HomePageSlider } from "components/HomePageSlider/HomePageSlider";
+import { GetStaticProps } from "next";
+import { sdk } from "graphql/client";
 import { UploadFileEntity } from "graphql/generated";
 import { getPlaiceholder } from "plaiceholder";
+import { HomePageSlider } from "components/HomePageSlider/HomePageSlider";
 import { AboutMe } from "components/AboutMe/AboutMe";
-import { AboutMeSectionData, FormattedImageData } from "pages/types/types";
+import { SessionInfoLtr } from "components/SessionInfo/SessionInfoLtr/SessionInfoLtr";
+import {
+  AboutMeSectionData,
+  FormattedImageData,
+  SessionData,
+} from "pages/types/types";
+import { SessionInfoRtl } from "components/SessionInfo/SessionInfRtl/SessionInfoRtl";
 
 type Props = {
   formattedLayoutSliderImagesData: FormattedImageData[];
   aboutMeSectionData: AboutMeSectionData;
+  sessionsData: SessionData[];
 };
 
 const HomePage = ({
   formattedLayoutSliderImagesData,
   aboutMeSectionData,
+  sessionsData,
 }: Props) => {
   return (
     <>
@@ -24,8 +32,21 @@ const HomePage = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomePageSlider data={formattedLayoutSliderImagesData} />
-      <AboutMe data={aboutMeSectionData} />
+      <section className="col-span-full">
+        <HomePageSlider data={formattedLayoutSliderImagesData} />
+      </section>
+      <section className="grid col-span-10 col-start-2 pb-10">
+        <AboutMe data={aboutMeSectionData} />
+      </section>
+      <section className="grid grid-cols-12 col-span-full gap-y-60">
+        {sessionsData.map((session) =>
+          session.ltr ? (
+            <SessionInfoLtr key={session.id} session={session} />
+          ) : (
+            <SessionInfoRtl key={session.id} session={session} />
+          )
+        )}
+      </section>
     </>
   );
 };
@@ -33,6 +54,8 @@ const HomePage = ({
 const getStaticImage = async (image: UploadFileEntity) => {
   const url = image.attributes?.url;
   const alt = image.attributes?.alternativeText;
+  const width = image.attributes?.width;
+  const height = image.attributes?.height;
 
   const buffer = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`
@@ -44,6 +67,8 @@ const getStaticImage = async (image: UploadFileEntity) => {
     url,
     alt,
     base64,
+    width,
+    height,
   };
 };
 
@@ -55,7 +80,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const { aboutMe } = await sdk.GetAbouMeSection({
     slug: "1",
   });
-  console.log(aboutMe);
+
+  const { sessions } = await sdk.GetSessions({
+    slug: "1",
+  });
+
   const layoutSliderImagesData =
     layoutSlider?.data?.attributes?.layoutSlider?.imagesArray?.data;
 
@@ -63,8 +92,23 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const aboutMeSectionImage = aboutMeSectionData?.image?.data;
 
-  if (!layoutSliderImagesData || !aboutMeSectionData || !aboutMeSectionImage)
+  const sessionsData = sessions?.data?.attributes?.session;
+
+  if (
+    !layoutSliderImagesData ||
+    !aboutMeSectionData ||
+    !aboutMeSectionImage ||
+    !sessionsData
+  )
     return { notFound: true };
+
+  const upperSesionImageData = sessionsData[0]?.image.data;
+  const midSesionImageData = sessionsData[1]?.image.data;
+  const lowerSesionImageData = sessionsData[2]?.image.data;
+
+  if (!upperSesionImageData || !midSesionImageData || !lowerSesionImageData) {
+    return { notFound: true };
+  }
 
   const formattedLayoutSliderImagesData = await Promise.all(
     layoutSliderImagesData.map(getStaticImage)
@@ -72,6 +116,16 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const formattedAboutMrSectionImage = await getStaticImage(
     aboutMeSectionImage
+  );
+
+  const formattedupperSesionImageData = await getStaticImage(
+    upperSesionImageData
+  );
+
+  const formattedmidSesionImageData = await getStaticImage(midSesionImageData);
+
+  const formattedlowerSesionImageData = await getStaticImage(
+    lowerSesionImageData
   );
 
   return {
@@ -82,6 +136,11 @@ export const getStaticProps: GetStaticProps = async () => {
         description: aboutMeSectionData.description,
         image: formattedAboutMrSectionImage,
       },
+      sessionsData: [
+        { ...sessionsData[0], image: formattedupperSesionImageData },
+        { ...sessionsData[1], image: formattedmidSesionImageData },
+        { ...sessionsData[2], image: formattedlowerSesionImageData },
+      ],
     },
   };
 };

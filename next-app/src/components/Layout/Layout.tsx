@@ -13,7 +13,7 @@ export const Layout = ({ children, mainFont, titleFont }: LayoutProps) => {
     <>
       <Header mainFont={mainFont} />
       <main
-        className={`font-inter ${mainFont} ${titleFont} gap-y-20 overflow-x-hidden grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12`}
+        className={`font-didactGothic text-xl ${mainFont} ${titleFont} gap-y-52 overflow-x-hidden grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-12`}
       >
         {children}
       </main>

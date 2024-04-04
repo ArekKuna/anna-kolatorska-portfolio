@@ -1,7 +1,8 @@
-import "styles/globals.css";
-import { Layout } from "components/Layout/Layout";
 import type { AppProps } from "next/app";
 import { Inter, Didact_Gothic } from "next/font/google";
+import { Layout } from "components/Layout/Layout";
+
+import "styles/globals.css";
 
 const mainFont = Inter({
   subsets: ["latin"],
