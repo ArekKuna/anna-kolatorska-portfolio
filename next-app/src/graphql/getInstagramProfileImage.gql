@@ -1,0 +1,26 @@
+query GetInstagramProfileImage($id: ID) {
+  instagramProfileImage(id: $id) {
+    data {
+      attributes {
+        instagramProfileImage {
+          instagramProfileImage {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+                alternativeText
+                name
+                hash
+                mime
+                provider
+                size
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

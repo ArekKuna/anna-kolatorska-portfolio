@@ -13,6 +13,16 @@ export interface AboutMeAboutMe extends Schema.Component {
   };
 }
 
+export interface InstagramProfileInstagramProfile extends Schema.Component {
+  collectionName: 'components_instagram_profile_instagram_profiles';
+  info: {
+    displayName: 'instagramProfile';
+  };
+  attributes: {
+    instagramProfileImage: Attribute.Media & Attribute.Required;
+  };
+}
+
 export interface LayoutLayoutSlider extends Schema.Component {
   collectionName: 'components_layout_layout_sliders';
   info: {
@@ -42,6 +52,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'about-me.about-me': AboutMeAboutMe;
+      'instagram-profile.instagram-profile': InstagramProfileInstagramProfile;
       'layout.layout-slider': LayoutLayoutSlider;
       'session.session': SessionSession;
     }

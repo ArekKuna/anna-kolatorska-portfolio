@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_instagram_profile_instagram_profiles",
+  "info": {
+    "displayName": "instagramProfile"
+  },
+  "options": {},
+  "attributes": {
+    "instagramProfileImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

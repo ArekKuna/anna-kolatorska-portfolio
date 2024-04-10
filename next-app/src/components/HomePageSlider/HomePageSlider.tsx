@@ -1,41 +1,37 @@
-import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import { FormattedImageData } from "pages/types/types";
-import { Photo } from "components/Layout/Photo/Photo";
+import { FormattedStrapiImageData } from "types/types";
+import { BlurredImage } from "components/Layout/BlurredImage/BlurredImage";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
 
 type Props = {
-  data: FormattedImageData[];
+  data: FormattedStrapiImageData[];
 };
 
 export const HomePageSlider = ({ data }: Props) => {
-  const [blurred, setBlurred] = useState(true);
-
   return (
     <Swiper
       className="col-span-12 h-screen w-screen"
       modules={[Autoplay, EffectFade]}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 2000 }}
       speed={1000}
-      fadeEffect={{ crossFade: true }}
       effect="fade"
+      loop
     >
       {data.map((image) => {
-        const { alt, base64, url, height, width } = image;
+        const { alt, base64, url } = image;
         return (
           <SwiperSlide
             key={url}
-            className="w-full h-full flex justify-center items-center"
+            className="w-full h-screen flex justify-center items-center"
           >
-            <Photo
+            <BlurredImage
+              url={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`}
               alt={alt}
               base64={base64}
-              height={height}
-              url={url}
-              width={width}
+              fill
             />
           </SwiperSlide>
         );

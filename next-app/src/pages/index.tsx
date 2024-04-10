@@ -6,23 +6,26 @@ import { getPlaiceholder } from "plaiceholder";
 import { HomePageSlider } from "components/HomePageSlider/HomePageSlider";
 import { AboutMe } from "components/AboutMe/AboutMe";
 import { SessionInfoLtr } from "components/SessionInfo/SessionInfoLtr/SessionInfoLtr";
+import { SessionInfoRtl } from "components/SessionInfo/SessionInfRtl/SessionInfoRtl";
+import { InstagramFeed } from "components/InstagramFeed/InstagramFeed";
 import {
   AboutMeSectionData,
-  FormattedImageData,
+  FormattedStrapiImageData,
   SessionData,
-} from "pages/types/types";
-import { SessionInfoRtl } from "components/SessionInfo/SessionInfRtl/SessionInfoRtl";
+} from "types/types";
 
 type Props = {
-  formattedLayoutSliderImagesData: FormattedImageData[];
+  formattedLayoutSliderImagesData: FormattedStrapiImageData[];
   aboutMeSectionData: AboutMeSectionData;
   sessionsData: SessionData[];
+  formattedInstagramProfileImage: FormattedStrapiImageData;
 };
 
 const HomePage = ({
   formattedLayoutSliderImagesData,
   aboutMeSectionData,
   sessionsData,
+  formattedInstagramProfileImage,
 }: Props) => {
   return (
     <>
@@ -38,7 +41,7 @@ const HomePage = ({
       <section className="grid col-span-10 col-start-2 pb-10">
         <AboutMe data={aboutMeSectionData} />
       </section>
-      <section className="grid grid-cols-12 col-span-full gap-y-60">
+      <section className="grid grid-cols-12 col-span-full gap-y-40">
         {sessionsData.map((session) =>
           session.ltr ? (
             <SessionInfoLtr key={session.id} session={session} />
@@ -47,11 +50,14 @@ const HomePage = ({
           )
         )}
       </section>
+      <section className="grid grid-cols-12 col-span-full">
+        <InstagramFeed instagramProfileImage={formattedInstagramProfileImage} />
+      </section>
     </>
   );
 };
 
-const getStaticImage = async (image: UploadFileEntity) => {
+const getStrapiStaticImage = async (image: UploadFileEntity) => {
   const url = image.attributes?.url;
   const alt = image.attributes?.alternativeText;
   const width = image.attributes?.width;
@@ -85,6 +91,10 @@ export const getStaticProps: GetStaticProps = async () => {
     slug: "1",
   });
 
+  const { instagramProfileImage } = await sdk.GetInstagramProfileImage({
+    id: "1",
+  });
+
   const layoutSliderImagesData =
     layoutSlider?.data?.attributes?.layoutSlider?.imagesArray?.data;
 
@@ -94,11 +104,16 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const sessionsData = sessions?.data?.attributes?.session;
 
+  const instagramProfileImageData =
+    instagramProfileImage?.data?.attributes?.instagramProfileImage
+      ?.instagramProfileImage.data;
+
   if (
     !layoutSliderImagesData ||
     !aboutMeSectionData ||
     !aboutMeSectionImage ||
-    !sessionsData
+    !sessionsData ||
+    !instagramProfileImageData
   )
     return { notFound: true };
 
@@ -106,26 +121,37 @@ export const getStaticProps: GetStaticProps = async () => {
   const midSesionImageData = sessionsData[1]?.image.data;
   const lowerSesionImageData = sessionsData[2]?.image.data;
 
-  if (!upperSesionImageData || !midSesionImageData || !lowerSesionImageData) {
+  if (
+    !upperSesionImageData ||
+    !midSesionImageData ||
+    !lowerSesionImageData ||
+    !instagramProfileImageData
+  ) {
     return { notFound: true };
   }
 
   const formattedLayoutSliderImagesData = await Promise.all(
-    layoutSliderImagesData.map(getStaticImage)
+    layoutSliderImagesData.map(getStrapiStaticImage)
   );
 
-  const formattedAboutMrSectionImage = await getStaticImage(
+  const formattedAboutMrSectionImage = await getStrapiStaticImage(
     aboutMeSectionImage
   );
 
-  const formattedupperSesionImageData = await getStaticImage(
+  const formattedupperSesionImageData = await getStrapiStaticImage(
     upperSesionImageData
   );
 
-  const formattedmidSesionImageData = await getStaticImage(midSesionImageData);
+  const formattedmidSesionImageData = await getStrapiStaticImage(
+    midSesionImageData
+  );
 
-  const formattedlowerSesionImageData = await getStaticImage(
+  const formattedlowerSesionImageData = await getStrapiStaticImage(
     lowerSesionImageData
+  );
+
+  const formattedInstagramProfileImage = await getStrapiStaticImage(
+    instagramProfileImageData
   );
 
   return {
@@ -141,6 +167,7 @@ export const getStaticProps: GetStaticProps = async () => {
         { ...sessionsData[1], image: formattedmidSesionImageData },
         { ...sessionsData[2], image: formattedlowerSesionImageData },
       ],
+      formattedInstagramProfileImage,
     },
   };
 };

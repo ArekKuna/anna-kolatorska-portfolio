@@ -10,6 +10,9 @@ const nextConfig = {
         port: "1337",
         pathname: "/uploads/*",
       },
+      {
+        hostname: "scontent-waw2-1.cdninstagram.com",
+      },
     ],
   },
 };

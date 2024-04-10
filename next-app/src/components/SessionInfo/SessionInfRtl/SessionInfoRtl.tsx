@@ -1,4 +1,4 @@
-import { SessionData } from "pages/types/types";
+import { SessionData } from "types/types";
 import { SessionTitleRtl } from "components/SessionInfo/SessionInfRtl/SessionTitleRtl";
 import { SessionCardRtl } from "components/SessionInfo/SessionInfRtl/SessionCardRtl";
 
