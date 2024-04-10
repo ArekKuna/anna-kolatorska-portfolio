@@ -1,24 +1,41 @@
 import type { AppProps } from "next/app";
-import { Inter, Didact_Gothic } from "next/font/google";
 import { Layout } from "components/Layout/Layout";
+import { Inter, Didact_Gothic, Jomhuria, KoHo } from "next/font/google";
 
 import "styles/globals.css";
 
-const mainFont = Inter({
+const fontInter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["500", "700"],
   variable: "--font-inter",
 });
 
-const titleFont = Didact_Gothic({
+const fontDidactGothic = Didact_Gothic({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-didact-gothic",
 });
 
+const fontKoho = KoHo({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-koHo",
+});
+
+const fontJomhuria = Jomhuria({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-jomhuria",
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout mainFont={mainFont.variable} titleFont={titleFont.variable}>
+    <Layout
+      fontInter={fontInter.variable}
+      fontDidactGothic={fontDidactGothic.variable}
+      fontJomhuria={fontJomhuria.variable}
+      fontKoho={fontKoho.variable}
+    >
       <Component {...pageProps} />
     </Layout>
   );

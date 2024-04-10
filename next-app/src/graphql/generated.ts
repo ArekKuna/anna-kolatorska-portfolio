@@ -112,6 +112,23 @@ export type ComponentAboutMeAboutMeInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ComponentInstagramProfileInstagramProfile = {
+  __typename?: 'ComponentInstagramProfileInstagramProfile';
+  id: Scalars['ID']['output'];
+  instagramProfileImage: UploadFileEntityResponse;
+};
+
+export type ComponentInstagramProfileInstagramProfileFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentInstagramProfileInstagramProfileFiltersInput>>>;
+  not?: InputMaybe<ComponentInstagramProfileInstagramProfileFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentInstagramProfileInstagramProfileFiltersInput>>>;
+};
+
+export type ComponentInstagramProfileInstagramProfileInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  instagramProfileImage?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type ComponentLayoutLayoutSlider = {
   __typename?: 'ComponentLayoutLayoutSlider';
   id: Scalars['ID']['output'];
@@ -221,7 +238,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = AboutMe | ComponentAboutMeAboutMe | ComponentLayoutLayoutSlider | ComponentSessionSession | I18NLocale | LayoutSlider | Sessions | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = AboutMe | ComponentAboutMeAboutMe | ComponentInstagramProfileInstagramProfile | ComponentLayoutLayoutSlider | ComponentSessionSession | I18NLocale | InstagramProfileImage | LayoutSlider | Sessions | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -282,6 +299,50 @@ export type IdFilterInput = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   startsWith?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type InstagramProfileImage = {
+  __typename?: 'InstagramProfileImage';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  instagramProfileImage?: Maybe<ComponentInstagramProfileInstagramProfile>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type InstagramProfileImageEntity = {
+  __typename?: 'InstagramProfileImageEntity';
+  attributes?: Maybe<InstagramProfileImage>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type InstagramProfileImageEntityResponse = {
+  __typename?: 'InstagramProfileImageEntityResponse';
+  data?: Maybe<InstagramProfileImageEntity>;
+};
+
+export type InstagramProfileImageEntityResponseCollection = {
+  __typename?: 'InstagramProfileImageEntityResponseCollection';
+  data: Array<InstagramProfileImageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type InstagramProfileImageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<InstagramProfileImageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  instagramProfileImage?: InputMaybe<ComponentInstagramProfileInstagramProfileFiltersInput>;
+  not?: InputMaybe<InstagramProfileImageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<InstagramProfileImageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type InstagramProfileImageInput = {
+  instagramProfileImage?: InputMaybe<ComponentInstagramProfileInstagramProfileInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IntFilterInput = {
@@ -383,6 +444,7 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAboutMe?: Maybe<AboutMeEntityResponse>;
+  createInstagramProfileImage?: Maybe<InstagramProfileImageEntityResponse>;
   createLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
   createSessions?: Maybe<SessionsEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -392,6 +454,7 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteAboutMe?: Maybe<AboutMeEntityResponse>;
+  deleteInstagramProfileImage?: Maybe<InstagramProfileImageEntityResponse>;
   deleteLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
   deleteSessions?: Maybe<SessionsEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -413,6 +476,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateAboutMe?: Maybe<AboutMeEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateInstagramProfileImage?: Maybe<InstagramProfileImageEntityResponse>;
   updateLayoutSlider?: Maybe<LayoutSliderEntityResponse>;
   updateSessions?: Maybe<SessionsEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -434,6 +498,11 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateAboutMeArgs = {
   data: AboutMeInput;
+};
+
+
+export type MutationCreateInstagramProfileImageArgs = {
+  data: InstagramProfileImageInput;
 };
 
 
@@ -468,6 +537,11 @@ export type MutationCreateUsersPermissionsUserArgs = {
 
 
 export type MutationDeleteAboutMeArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteInstagramProfileImageArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -554,6 +628,12 @@ export type MutationUpdateFileInfoArgs = {
 };
 
 
+export type MutationUpdateInstagramProfileImageArgs = {
+  data: InstagramProfileImageInput;
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationUpdateLayoutSliderArgs = {
   data: LayoutSliderInput;
   id: Scalars['ID']['input'];
@@ -624,6 +704,8 @@ export type Query = {
   aboutMes?: Maybe<AboutMeEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  instagramProfileImage?: Maybe<InstagramProfileImageEntityResponse>;
+  instagramProfileImages?: Maybe<InstagramProfileImageEntityResponseCollection>;
   layoutSlider?: Maybe<LayoutSliderEntityResponse>;
   layoutSliders?: Maybe<LayoutSliderEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -661,6 +743,19 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryInstagramProfileImageArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryInstagramProfileImagesArgs = {
+  filters?: InputMaybe<InstagramProfileImageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -1224,6 +1319,13 @@ export type GetSessionsQueryVariables = Exact<{
 
 export type GetSessionsQuery = { __typename?: 'Query', sessions?: { __typename?: 'SessionsEntityResponse', data?: { __typename?: 'SessionsEntity', attributes?: { __typename?: 'Sessions', session: Array<{ __typename?: 'ComponentSessionSession', id: string, title: string, subTitle: string, description: string, ltr: boolean, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null } } | null> } | null } | null } | null };
 
+export type GetInstagramProfileImageQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type GetInstagramProfileImageQuery = { __typename?: 'Query', instagramProfileImage?: { __typename?: 'InstagramProfileImageEntityResponse', data?: { __typename?: 'InstagramProfileImageEntity', attributes?: { __typename?: 'InstagramProfileImage', instagramProfileImage?: { __typename?: 'ComponentInstagramProfileInstagramProfile', instagramProfileImage: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null, name: string, hash: string, mime: string, provider: string, size: number } | null } | null } } | null } | null } | null } | null };
+
 export const AboutMeImageDataFragmentDoc = gql`
     fragment AboutMeImageData on UploadFileEntityResponse {
   data {
@@ -1347,6 +1449,34 @@ export const GetSessionsDocument = gql`
   }
 }
     `;
+export const GetInstagramProfileImageDocument = gql`
+    query GetInstagramProfileImage($id: ID) {
+  instagramProfileImage(id: $id) {
+    data {
+      attributes {
+        instagramProfileImage {
+          instagramProfileImage {
+            data {
+              id
+              attributes {
+                url
+                width
+                height
+                alternativeText
+                name
+                hash
+                mime
+                provider
+                size
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -1363,6 +1493,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetSessions(variables?: GetSessionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSessionsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetSessionsQuery>(GetSessionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetSessions', 'query', variables);
+    },
+    GetInstagramProfileImage(variables?: GetInstagramProfileImageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetInstagramProfileImageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetInstagramProfileImageQuery>(GetInstagramProfileImageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetInstagramProfileImage', 'query', variables);
     }
   };
 }

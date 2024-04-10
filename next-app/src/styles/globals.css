@@ -19,3 +19,61 @@ body.drawer-open {
   overflow: hidden;
   position: fixed;
 }
+
+.instagram-feed-sub-gallery .swiper-button-next {
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 999px !important;
+  background-color: white;
+}
+
+.instagram-feed-sub-gallery .swiper-button-next::after {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: black !important;
+}
+
+.instagram-feed-sub-gallery .swiper-button-prev {
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 999px !important;
+  background-color: white;
+}
+
+.instagram-feed-sub-gallery .swiper-button-prev::after {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: black !important;
+}
+
+.swiper .main-instagram-feed {
+  position: static !important;
+}
+
+.main-instagram-feed .swiper-button-next {
+  height: 40px !important;
+  width: 40px !important;
+  right: 80px !important;
+  border-radius: 999px !important;
+  background-color: black;
+}
+
+.main-instagram-feed .swiper-button-next::after {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: white !important;
+}
+
+.main-instagram-feed .swiper-button-prev {
+  height: 40px !important;
+  width: 40px !important;
+  left: 80px !important;
+  border-radius: 999px !important;
+  background-color: black;
+}
+
+.main-instagram-feed .swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: white !important;
+}

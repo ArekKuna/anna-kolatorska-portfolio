@@ -820,6 +820,39 @@ export interface ApiAboutMeAboutMe extends Schema.CollectionType {
   };
 }
 
+export interface ApiInstagramProfileImageInstagramProfileImage
+  extends Schema.CollectionType {
+  collectionName: 'instagram_profile_images';
+  info: {
+    singularName: 'instagram-profile-image';
+    pluralName: 'instagram-profile-images';
+    displayName: 'instagramProfileImage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    instagramProfileImage: Attribute.Component<'instagram-profile.instagram-profile'>;
+    slug: Attribute.UID;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::instagram-profile-image.instagram-profile-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::instagram-profile-image.instagram-profile-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLayoutSliderLayoutSlider extends Schema.CollectionType {
   collectionName: 'layout_sliders';
   info: {
@@ -901,6 +934,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about-me.about-me': ApiAboutMeAboutMe;
+      'api::instagram-profile-image.instagram-profile-image': ApiInstagramProfileImageInstagramProfileImage;
       'api::layout-slider.layout-slider': ApiLayoutSliderLayoutSlider;
       'api::sessions.sessions': ApiSessionsSessions;
     }

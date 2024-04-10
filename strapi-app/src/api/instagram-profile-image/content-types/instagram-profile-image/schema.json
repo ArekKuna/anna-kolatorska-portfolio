@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "instagram_profile_images",
+  "info": {
+    "singularName": "instagram-profile-image",
+    "pluralName": "instagram-profile-images",
+    "displayName": "instagramProfileImage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "instagramProfileImage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "instagram-profile.instagram-profile"
+    },
+    "slug": {
+      "type": "uid"
+    }
+  }
+}

@@ -5,8 +5,9 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ["var(--font-inter)"],
-        signRiyathi: ["SignRiyathi", "sans-serif"],
         didactGothic: ["var(--font-didact-gothic)"],
+        jomhuria: ["var(--font-jomhuria)"],
+        koHo: ["var(--font-koHo)"],
       },
     },
   },
